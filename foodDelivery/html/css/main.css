@@ -1,0 +1,181 @@
+/*{{{  Generic LNF*/
+body{
+    font: "Trebuchet MS", sans-serif;
+    font-size:10pt;
+}
+
+td { border:1px solid black; text-align:center; font-size:10pt; padding:5px}
+th { border:1px solid black; text-align:center; background-color: #c5dbec; font-size:10pt; }
+table {border: 1px solid black; }
+.selected { background-color: #dedede; }
+
+div { font-size: 10pt;  }
+
+a img { border:0px; } /*}}}*/
+
+/*{{{  main game page LNF */
+.stat_name { font-size:8pt; vertical-align: top; text-align:left;}
+
+.header { padding: 10px; }
+.hp {padding-left: 20px; font-family: "MS Serif", "New York", serif; color:red;}
+.ip {padding-left: 20px; font-family: "MS Serif", "New York", serif; color:#cc9933;}
+.ap {padding-left: 20px; font-family: "MS Serif", "New York", serif; color:blue;}
+.xp {padding-left: 20px; font-family: "MS Serif", "New York", serif; color:black;}
+
+.link_button {padding: 10px;text-decoration: none;}.stat { width:75px; background-image: url('../i/stat_bg.jpg'); }
+
+/* remove padding and scrolling from elements that contain an Accordion OR a content-div */
+.ui-layout-center ,	/* has content-div */
+.ui-layout-east ,	/* has content-div ... */
+.ui-layout-east .ui-layout-content { /* content-div has Accordion */
+    padding: 0;
+    overflow: hidden;
+}
+.ui-layout-center P.ui-layout-content {
+    line-height:	1.4em;
+    margin:			0; /* remove top/bottom margins from <P> used as content-div */
+}
+h3, h4 { /* Headers & Footer in Center & East panes */
+    font-size:		1.1em;
+    background:		#EEF;
+    border:			1px solid #BBB;
+    border-width:	0 0 1px;
+    padding:		7px 10px;
+    margin:			0;
+}
+.ui-layout-east h4 { /* Footer in East-pane */
+    font-size:		0.9em;
+    font-weight:	normal;
+    border-width:	1px 0 0;
+}
+
+.ui-accordion .ui-accordion-header a { /* shrink down the headers a bit */
+    padding: .1em .5em .1em 2.2em;
+}
+
+.ui-accordion .ui-accordion-content {
+    padding: 5px;
+}
+.dataTables_wrapper {
+    margin:0;
+    padding:0;
+} /*}}}*/
+
+/*{{{ navigation map*/
+
+.me {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  border: 1px solid #000000;
+}
+
+.descbox {
+    border:1px solid black;
+    width:100%;
+    font-family: "MS Serif", "New York", serif;
+    font-size:10pt;
+}
+
+.error {
+    color:red;
+    text-align:center;
+}
+
+.info {
+    color:green;
+    text-align:center;
+}
+
+.airlk{ background:#9999cc; color:#000000; }
+.areana{ background:#cc99cc; color:#000000; }
+.armory{ background:#330033; color:#ffffff; }
+.astrlab{ background:#663366; color:#cccccc; }
+.bar{ background:#993300; color:#cccccc; }
+.biolab{ background:#ccff00; color:#000000; }
+.brig{ background:#333333; color:#cccccc; }
+.church{ background:#66cc33; color:#000000; }
+.cmd{ background:#000033; color:#ffffff; }
+.coaster {background:#8fbc8f; color:#000000; }
+.commer{ background:#0066ff; color:#000000; }
+.corridor{ background:#ffffff; color:#000000; }
+.cryolab{ background:#ffff00; color:#000000; }
+.damage {background:#d8bfd8; color:#000000; }
+.delete{ background:#000000; color:#ffffff; }
+.edu {background:#bc8f8f; color:#000000; }
+.elev{ background:#996666; color:#000000; }
+.food {background:#dda0dd; color:#000000; }
+.generator{ background:#cccccc; color:#000000; }
+.genlab{ background:#66cc66; color:#000000; }
+.geolab{ background:#ccccff; color:#000000; }
+.greenhs{ background:#0cc000; color:#000000; }
+.grocery {background:#4682b4; color:#000000; }
+.gym{ background:#336699; color:#000000; }
+.infirm {background:#db7093; color:#000000; }
+.lib {background:#e6e6fa; color:#000000; }
+.lifespt{ background:#ff6699; color:#000000; }
+.living{ background:#99ffff; color:#000000; }
+.mall{ background:#ccc000; color:#000000; }
+.manor {background:#bc8f8f; color:#000000; }
+.manu{ background:#3399ff; color:#000000; }
+.medbay{ background:#ff0033; color:#000000; }
+.medrm{ background:#cc9966; color:#000000; }
+.nc{ background:#ff0066; color:#000000; }
+.observdk{ background:#003300; color:#cccccc; }
+.office {background:#ffc0cb; color:#000000; }
+.park{ background:#996633; color:#000000; }
+.phylab{ background:#ff3333; color:#000000; }
+.power {background:#f0fff0; color:#000000; }
+.psilab{ background:#ff9900; color:#000000; }
+.recrm{ background:#cc0000; color:#cccccc; }
+.roblab{ background:#006666; color:#cccccc; }
+.secdep {background:#ffebcd; color:#000000; }
+.security{ background:#ff3300; color:#000000; }
+.shutbay{ background:#003333; color:#cccccc; }
+.slum {background:#a0522d; color:#000000; }
+.space{ background:#000000; color:#ffffff; }
+.supply {background:#e0ffff; color:#000000; }
+.theatre {background:#f0e68c; color:#000000; }
+.votech {background:#deb887; color:#000000; }
+.warehs{ background:#3300cc; color:#cccccc; }
+.waste {background:#778899; color:#000000; }
+.raw {background:#ffdab9; color:#000000; }
+/*}}}*/
+
+/*{{{  for message box */
+.msgs {
+    font-size:10pt;
+    color: black;
+    padding-bottom:5px;
+}
+
+.read-true, .read-true a {
+    color:gray;
+}
+
+.read-false, .read-false a {
+    font-weight:500;
+}
+
+.selfevent {
+    /* font-weight: bold; */
+}
+
+.effect {
+    color:red;
+}
+
+.date {
+    color:#996
+}
+
+.msgs ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.msgs li {
+    margin-left: 0px;
+} /*}}}*/
+
+/* :wrap=none:noTabs=true:collapseFolds=1:mode=css:tabSize=4:indentSize=4:folding=explicit: */

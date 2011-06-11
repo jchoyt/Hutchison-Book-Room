@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>jRounded plugin - Examples</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="jRounded.js"></script>
+		<link rel="stylesheet" href="jRounded.css" />
+		<script>
+			/* All you have to do is to call
+			 * a box() function on a selection
+			 */
+
+			$(document).ready(function() {
+				$('.boxMe').box();
+				
+				// Specify all classess and id's in one selection
+				$('.otherOne, .anotherOne').box();
+			});
+		</script>
+	</head>
+	<body>
+
+<code>
+	$('.boxMe').box();
+</code><br /><br />
+<div class="boxMe">
+	Some <code>div</code> content with <code>boxMe</code> class
+</div>
+
+<code>
+	$('.otherOne, .anotherOne').box();
+</code><br /><br />
+<div class="otherOne">Another <code>div</code> content with <code>otherOne</code> class</div>
+
+<div class="anotherOne">Another <code>div</code> content with <code>anotherOne</code> class</div>
+
+<br /><br />
+
+<p>Change <strong>jRounded.css</strong> file to change box background color, text type, size, top, bottom margins, etc.</p>
+
+<div class="anotherOne bg-white">
+	<p>Box with a white background color.</p>
+	<p>Just add <code>bg-white</code> CSS class to your box and it's done.</p>
+	<p><em>This is simply achieved by adding my custom CSS. You can do way more than that...</em></p>
+</div>
+	</body>
+</html>

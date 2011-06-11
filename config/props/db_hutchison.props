@@ -1,0 +1,6 @@
+DBLOGIN=jchoyt
+DBNAME=hutchison
+DBPASSWORD=ou812ic
+DBSERVER=jdbc:postgresql://localhost:5432/hutchison
+DBDRIVER=org.postgresql.Driver
+SCHEMA=public

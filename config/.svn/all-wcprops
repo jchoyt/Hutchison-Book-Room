@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/saife/!svn/ver/140/trunk/config
+END
+standard.properties
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/saife/!svn/ver/69/trunk/config/standard.properties
+END
+saife.tld
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/saife/!svn/ver/13/trunk/config/saife.tld
+END
+workflow.xml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/saife/!svn/ver/117/trunk/config/workflow.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/saife/!svn/ver/116/trunk/config/web.xml
+END

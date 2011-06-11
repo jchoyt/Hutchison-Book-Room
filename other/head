@@ -1,0 +1,2 @@
+copy book (title, author, genre, color, box, copy_count, minlevel, maxlevel, word_count, keyword) from STDIN;
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<remote_target>
+    <broadcast_target name="Local Admin" local_datasource="db_admin.props" url="http://127.0.0.1:8080/mrald" remote_datasource="db_admin.props" />
+    <broadcast_target name="Local Baseball" local_datasource="db_baseball.props" url="http://127.0.0.1:8080/mrald" remote_datasource="db_baseball.props" />
+    <broadcast_target name="Local Admin" local_datasource="db_admin.props" url="http://brainsrv2.mitre.org:8090/mrald" remote_datasource="db_admin.props" />
+    
+</remote_target>
+
+

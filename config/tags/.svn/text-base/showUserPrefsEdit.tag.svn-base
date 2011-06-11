@@ -1,0 +1,81 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    //String user = WebUtils.getOptionalParameter(request, "user", "ghamilton" );
+    String person_id = WebUtils.getOptionalParameter(request, "person_id", "-1" );
+
+     System.out.println("showUserPrefsEdit : person_id " + person_id);
+    int user_id = Integer.parseInt(person_id);
+
+    String query =
+    "select user_name, first_name, last_name, tele_number, mobile_number, email_addr,user_id, mobile_carrier "
+	+" from saife_user where user_id = ? ";
+    Connection conn = new MraldConnection("main").getConnection();
+    PreparedStatement prep = conn.prepareStatement(query);
+	prep.setInt(1, user_id);
+
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("showPrefs.tag", "main", query, logInfo);
+    ResultSet rs =prep.executeQuery();
+    MiscUtils.logQueryRun(startTime, logInfo);
+
+    while (rs.next())
+    {
+        String name = rs.getString("user_name");
+        String first_name = rs.getString("first_name");
+        String last_name = rs.getString("last_name");
+        int userId = rs.getInt("user_id");
+        String selCarrier = rs.getString("mobile_carrier");
+    	%>
+    	 <div class="wide_table_top">
+					<div align="center"><span class="title_panel"> <%=first_name%> <%=last_name%></span> </div>
+		 </div>
+    	 <div class="wide_table_content">
+					<div class="wide_table_text">
+					<center>
+					<table>
+        	<tr><th>User</th><th><b><%=name%></b></th></tr>
+       <%
+         String tele_number = rs.getString("tele_number");
+        String mobile_number = rs.getString("mobile_number");
+        String email_addr = rs.getString("email_addr");
+        String mobile_query = "Select carrier from txt_msg_lkup";
+        PreparedStatement prep_mobile = conn.prepareStatement(mobile_query);
+        ResultSet rsMobile = prep_mobile.executeQuery();
+        %>
+
+
+        	<tr><td>Name</td><td><%=first_name%> <%=last_name%></td></tr>
+        	<tr><td>Telephone</td><td><input type="text" name="tele_number" value="<%=tele_number%>" /></td></tr>
+        	<tr><td>Mobile</td><td><input type="text" name="mobile_number" value="<%=mobile_number%>" /></td></tr>
+        	<tr><td>Email</td><td><input type="text" name="email_addr" value="<%=email_addr%>" /></td></tr>
+            <input type="hidden" name="user_id" value="<%=userId%>" />
+        	<tr><td>Carrier</td><td><Select name="carrier"><option></option>
+        <%
+        while (rsMobile.next())
+        {
+        	String selected ="";
+
+        	String carrier = rsMobile.getString("carrier");
+        	if (selCarrier != null && selCarrier.equals(carrier))
+        		selected =" selected=\"true\" ";
+        	%>
+        		<option value="<%=carrier%>" "<%=selected%>"><%=carrier%></option>
+        	<%
+        }
+        %>
+            </select></td></tr>
+            </table>
+            </center>
+            </div>
+            </div>
+            <div class="wide_table_bottom">
+
+			</div>
+			<br />
+        <%
+
+    }
+
+    rs.close();
+    conn.close();
+%>

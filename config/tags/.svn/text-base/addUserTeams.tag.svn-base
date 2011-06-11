@@ -1,0 +1,73 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    String person_id = WebUtils.getOptionalParameter(request, "person_id", "0" );
+    String user = WebUtils.getOptionalParameter(request, "user", "ghamilton" );
+    String team_name = WebUtils.getOptionalParameter(request, "team_name", "" );
+      
+    int user_id = Integer.parseInt(person_id);
+      
+    System.out.println("addUserTeams.jsp : person_id " + person_id);
+    
+    String query = 
+    "select  user_name, first_name, last_name  from saife_user " ;
+    
+    Connection conn = new MraldConnection("main").getConnection();
+    PreparedStatement prep = conn.prepareStatement(query);
+	
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("displayUserTeams.tag", "main", query, logInfo);
+    ResultSet rs =prep.executeQuery();
+    
+    MiscUtils.logQueryRun(startTime, logInfo);
+    %>
+    <style type="text/css"> 
+        .RED { color:red; } 
+        .GREEN { color:darkgreen; } 
+        .YELLOW { color:orange; } 
+    </style>
+
+   <div class="wide_table_top">
+					<div align="center"><span class="title_panel"><%=team_name%></span> </div>
+		 </div>
+    	 <div class="wide_table_content">
+					<div class="wide_table_text">
+					<center>
+					<table name="Alerts" width="500" border=".1" cellpadding="1"
+					cellspacing="1" align="center">
+					<br/>
+    <%    
+    StringBuffer userList = new StringBuffer("<option></option>");
+    String button =  "<td><input type=\"button\" onclick=\"replace()\" value=\"Add\"></input></td>";
+  
+    while (rs.next())
+    {
+        String name = rs.getString("user_name");
+        String first_name = rs.getString("first_name");
+        String last_name = rs.getString("last_name");
+        
+    	%>
+    	 
+        	
+       <% 	
+        String user_name = rs.getString("user_name");
+        userList.append("<option value=\""+  user_name +  "\">" + first_name + " " + last_name + "</option>");
+    }
+      userList.append("\n");
+    %>
+    		<tr><td>Team Name</td><td colspan="2">User List</td></tr>
+    		<td><input type="text" name="team_name" value="<%=team_name%>"></input></td>
+        	<td><select name="users"><%=userList%></select></td><%=button%></tr>
+        	<tr><td colspan="3">
+        	<div id="listUsers"><div class="results"><table><tr><td>Team Members</td></tr></table></div></div>
+        	</td></tr>
+            </table>
+            </center>
+            </div>
+            </div>
+            <div class="wide_table_bottom">
+			</div>
+			<br />
+<%
+    rs.close();
+    conn.close();
+%>

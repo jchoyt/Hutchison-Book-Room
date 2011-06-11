@@ -1,0 +1,83 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    String user = WebUtils.getOptionalParameter(request, "user", "ghamilton" );
+      
+      
+    String getTeams =  
+     "select team_id, team_name from saife_team s, team_users t, saife_user u " 
+    + " where s.team_id = t.saife_team_team_id " 
+    + " and saife_users_id = u.user_id and "
+	+"  user_name = ? order by team_name ";
+	
+    String query = 
+    "select user_name, first_name, last_name, team_name from saife_team s, team_users t, saife_user u " 
+    + " where s.team_id = t.saife_team_team_id " 
+    + " and saife_users_id = u.user_id and "
+	+"  s.team_id = ? order by team_name ";
+    Connection conn = new MraldConnection("main").getConnection();
+    PreparedStatement prep = conn.prepareStatement(getTeams);
+	prep.setString(1, user);
+	
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("displayUserTeams.tag", "main", query, logInfo);
+    ResultSet rs =prep.executeQuery();
+    String team_name="";
+    
+    MiscUtils.logQueryRun(startTime, logInfo);
+    ArrayList<String> teamIds = new ArrayList<String>();
+    HashMap<String,String> teamNames = new HashMap<String,String>();
+    while (rs.next())
+    {
+    	teamIds.add(rs.getInt(1) + "");
+    	teamNames.put(rs.getInt(1) + "", rs.getString("team_name"));    	     
+    }
+      
+    prep = conn.prepareStatement(query);  
+    
+    for (String teamId: teamIds)
+    {
+      
+      prep.clearParameters();
+      prep.setString(1, teamId);
+      rs =prep.executeQuery();
+      team_name = teamNames.get(teamId);
+      %>
+    	 <div class="wide_table_top">
+					<div align="center"><span class="title_panel"><%=team_name%></span> </div>
+		 </div>
+    	 <div class="wide_table_content">
+					<div class="wide_table_text">
+					<center>
+					<div class="results">
+					<table name="Alerts" border="0" cellpadding="0.1"
+					cellspacing="0.1" align="center">
+					
+					<tr><th>Team Members</th></tr>
+        	
+       <% 
+      while (rs.next())
+      {
+        String name = rs.getString("user_name");
+        String first_name = rs.getString("first_name");
+        String last_name = rs.getString("last_name");
+        String user_name = rs.getString("user_name");  
+        %>
+        	<tr><td align="center"><%=user_name%></td></tr>
+        <%
+      }
+      %>  
+	            </table>
+	            </div>
+	            </center>
+	            </div>
+	            </div>
+	            <div class="wide_table_bottom">
+				</div>
+			
+			
+			<br />
+        <%	
+    }
+    rs.close();
+    conn.close();
+%>

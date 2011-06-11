@@ -1,0 +1,63 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    String team_id = WebUtils.getOptionalParameter(request, "team_id", "15" );
+   
+   int teamId = Integer.parseInt(team_id);
+    String query = 
+    "select user_name, first_name, last_name, team_name from saife_team s, team_user t, saife_user u " 
+    + " where s.team_id = t.saife_team_team_id " 
+    + " and saife_user_user_id = u.user_id and "
+	+"  s.team_id = ? order by team_name ";
+    Connection conn = new MraldConnection("main").getConnection();
+    PreparedStatement prep = conn.prepareStatement(query);
+	prep.setInt(1, teamId);
+	
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("displayUserTeams.tag", "main", query, logInfo);
+    ResultSet rs =prep.executeQuery();
+    String team_name="";
+
+      %>
+    	
+    	 <div class="wide_table_content">
+			<div class="wide_table_text">
+				
+					<table name="Alerts" width="80%" border="0.5" cellpadding="0.1"
+					cellspacing="0.1" align="center">
+					
+					
+					<tr><td>
+					<div class="results">
+					
+					<table width="80%">
+				    <tr><th>Team Members</th></tr>    	
+       <% 
+      while (rs.next())
+      {
+        String name = rs.getString("user_name");
+        team_name = rs.getString("team_name");
+        String first_name = rs.getString("first_name");
+        String last_name = rs.getString("last_name");
+        String user_name = rs.getString("user_name");  
+        %>
+        	<tr><td align="left"><%=first_name%> <%=last_name%></td></tr>
+        	         
+        <%
+      }
+      
+      rs.close();
+      conn.close();
+      %>  
+      	<tr><th><br/></th></tr>
+
+     </table>
+     </div></td></tr>   
+      <tr><td align="center" colspan="2"><input type="button" value ="Edit" onclick="$('#teamMembers<%=team_id%>').load('editUserTeam.jsp?team_id=<%=teamId%>')"></input>
+      <input type="button" value ="Close" onclick="$('#teamMembers<%=team_id%>').html('')"></input></td></tr>
+        
+	  </table>
+	        
+	  <br/>
+	    
+	</div>
+	</div>		

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <link rel='stylesheet' type='text/css' href='redmond/theme.css' />
+        <link rel='stylesheet' type='text/css' href='fullcalendar.css' />
+        <script type='text/javascript' src='jquery/jquery.js'></script>
+        <script type='text/javascript' src='jquery/ui.core.js'></script>
+        <script type='text/javascript' src='jquery/ui.draggable.js'></script>
+        <script type='text/javascript' src='jquery/ui.resizable.js'></script>
+        <script type='text/javascript' src='fullcalendar.min.js'></script>
+        <title>Hutchison Elementary School Food Delivery Schedule</title>
+
+        <script type='text/javascript'>
+
+            $(document).ready(function() {
+
+                $('#calendar').fullCalendar({
+
+                    theme: true,
+                    firstDay: 1,
+                    weekMode:'liquid',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+
+                    // editable: true,
+
+                    events: "hutch-month.json",
+
+                    eventDrop: function(event, delta) {
+                        alert(event.title + ' was moved ' + delta + ' days\n' +
+                            '(should probably update your database)');
+                    },
+
+                    loading: function(bool) {
+                        if (bool) $('#loading').show();
+                        else $('#loading').hide();
+                    }
+
+                });
+
+            });
+
+        </script>
+        <style type='text/css'>
+
+            body {
+                margin-top: 40px;
+                text-align: center;
+                font-size: 14px;
+                font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+                }
+
+            #loading {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                }
+
+            #calendar {
+                width: 900px;
+                margin: 0 auto;
+                }
+
+        </style>
+    </head>
+    <body>
+        <div id='loading' style='display:none'>loading...</div>
+        <div id='calendar'></div>
+        <hr style="width:75%;color:lightblue;"/>
+        <div style="margin:auto;width:500px;padding:1em  ">
+            <div style="text-align:left;margin-left:5em;"><h1>Substitutes</h1>
+            <p>
+                If you need a substitue, please call the other people in your group (your day of the week).  If that fails, call Jeff Hoyt.
+            </p>
+            </div>
+        </div>
+    </body>
+</html>

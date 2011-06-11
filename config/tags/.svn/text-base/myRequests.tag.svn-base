@@ -1,0 +1,31 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+
+        <table summary="" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>User</th>
+                <th>TCN</th>
+                <th>Destination Agency</th>
+                <th>Select</th>
+            </tr>
+            <%
+                String selectSql = "SELECT users_user_id,tcn,dai FROM submissions ";
+                MraldConnection conn = new MraldConnection("main");
+                ResultSet rs =null;
+                StringBuffer logInfo = new StringBuffer();
+                long startTime = MiscUtils.logQuery("entityList.tag", "main", query, logInfo);
+                rs = conn.executeQuery(selectSql);
+                MiscUtils.logQueryRun(startTime, logInfo);
+                int i = 100;
+                while (rs.next())
+                {
+                    String user_id = rs.getString("users_user_id");
+                    String tcn = rs.getString("tcn");
+                    String dai = rs.getString("dai");
+                %>
+                    <tr><td><%=user_id%></td><td><%=tcn%></td><td><%=dai%></td></tr>
+                <%	
+                }
+                rs.close();
+                conn.close();
+            %>
+        </table>

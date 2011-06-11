@@ -1,0 +1,7 @@
+#foreach($item in $items)
+<tr>
+    <td>${item.dow}</td>
+    <td>${item.start}</td>
+    <td>${item.title}</td>
+</tr>
+#end

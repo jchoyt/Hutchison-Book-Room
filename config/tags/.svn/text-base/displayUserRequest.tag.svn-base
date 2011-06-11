@@ -1,0 +1,191 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*,java.text.DateFormat, java.text.SimpleDateFormat" %>
+<%
+    String person_id = WebUtils.getOptionalParameter(request, "person_id", "0" );
+	String tcn_number = WebUtils.getRequiredParameter(request, "tcn_number");
+	System.out.println("displayRequests : person id  : " + person_id);
+	  
+    int userId = Integer.parseInt(person_id);
+      
+    String query = "SELECT submission.tcn, submission.ori, submission.cri, submission.timestamp, submission.sub_file_path, " +
+    			  "  request.tcn, request.original_ori, request.cri,request.dai, request.request_file_path, request.timestamp, request.priority, " +
+    			  "  response.result, response.tcn, response.tcr, response.cri, response.dai, response.ori, response.subject_id, response.result " + 
+                  " FROM request, submission LEFT OUTER JOIN response ON (submission.submission_id = response.submission_submission_id) " + 
+                  " where request.request_id = submission.request_request_id and "+ 
+                  " request.saife_user_user_id = ? and submission.tcn = ? ";
+   
+     query = "SELECT submission.tcn, submission.ori, submission.cri, submission.timestamp, submission.sub_file_path " +
+    			  " FROM submission , request " + 
+                  " where request.request_id = submission.request_request_id and "+ 
+                  " request.saife_user_user_id = ? and submission.tcn = ? ";
+   
+    Connection conn = new MraldConnection("main").getConnection();
+    PreparedStatement prep = conn.prepareStatement(query);
+	prep.setInt(1, userId);
+	prep.setString(2, tcn_number);
+	
+	StringBuffer submissionBuf = new StringBuffer();
+	StringBuffer responseBuf = new StringBuffer();
+	StringBuffer requestBuf = new StringBuffer();
+	
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("displayUserRequest.tag", "main", query, logInfo);
+    java.util.Date date=null;
+    ResultSet rs =prep.executeQuery();
+    MiscUtils.logQueryRun(startTime, logInfo);
+    String spanStart = "<span class=\"news_more\"><tr><td align=\"right\">";
+    String spanMid = "</td><td align=\"center\">";
+    String spanEnd = "</td></tr></span>";
+    while (rs.next())
+    {
+       
+        String ori = rs.getString("ori");
+        String cri = rs.getString("cri");
+        String fileName = rs.getString("sub_file_path");
+        
+         
+        Timestamp timestamp = rs.getTimestamp("timestamp");
+        if (timestamp != null)
+        {
+        	String dateTime = timestamp.toString();
+			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			date = sdf.parse(dateTime);
+        	
+        }	
+       submissionBuf.append(spanStart + "TCN:" + spanMid + tcn_number + spanEnd);
+       submissionBuf.append(spanStart + "Time:" + spanMid + date + spanEnd);
+       submissionBuf.append(spanStart + "ORI:" + spanMid + ori + spanEnd);
+       submissionBuf.append(spanStart + "CRI:" + spanMid + cri + spanEnd);
+       submissionBuf.append(spanStart + "File:" + spanMid + fileName + spanEnd);
+       
+    }
+     query = "SELECT request.tcn,  request.original_ori, request.cri, request.dai,  " +
+     			" request.timestamp,request.request_file_path , request.priority,  l.category_value " +
+    			  " FROM request, category_lkup l " + 
+                  " where request.saife_user_user_id = ? and request.tcn = ? "
+                  +" and request.category_lkup_category_id = l.category_id " ;
+
+	prep = conn.prepareStatement(query);
+	prep.setInt(1, userId);
+	prep.setString(2, tcn_number);
+	rs =prep.executeQuery();
+	
+	while (rs.next())
+	{
+	 	String ori = rs.getString("original_ori");
+        String cri = rs.getString("cri");
+        String dai = rs.getString("dai");
+       	String priority = rs.getString("priority");
+        String fileName = rs.getString("request_file_path");
+       String catValue = rs.getString("category_value");
+       
+       catValue = spanStart +  "Category:</td><td align=\"center\" style=\"color:black;background-color:" + catValue + "\">"+ catValue + spanEnd;
+        Timestamp timestamp = rs.getTimestamp("timestamp");
+        if (timestamp != null)
+        {
+        	String dateTime = timestamp.toString();
+			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			date = sdf.parse(dateTime);
+        	
+        }	
+       requestBuf.append(spanStart + "TCN:" + spanMid + tcn_number + spanEnd);
+       requestBuf.append(spanStart + "Time:" + spanMid + date + spanEnd);
+       requestBuf.append(spanStart + "ORI:" + spanMid + ori + spanEnd);
+       requestBuf.append(spanStart + "CRI:" + spanMid + cri + spanEnd);
+       requestBuf.append(spanStart + "DAI:" + spanMid + dai + spanEnd);
+       requestBuf.append(spanStart + "Priority:" + spanMid + priority + spanEnd);
+       requestBuf.append(spanStart + "Category:" + spanMid + catValue + spanEnd);
+       requestBuf.append(spanStart + "File:" + spanMid + fileName + spanEnd);
+	}
+	
+	//Response
+	 query = "SELECT response.tcn, hns_country_profile.country_name, response.tcr, response.cri, response.dai, response.ori, " +
+	 		" response.timestamp, response.res_file_path ,  response.result, response.subject_id " +
+    			  " FROM response , request, submission, hns_country_profile " + 
+                  " where request.saife_user_user_id = ? and request.tcn = ? " +
+                  " and request.request_id = submission.request_request_id " +
+                  " and submission.submission_id = response.submission_submission_id " +
+                  " and response.hns_country_profile_hns_profile_id = hns_country_profile.hns_profile_id";
+
+	prep = conn.prepareStatement(query);
+	prep.setInt(1, userId);
+	prep.setString(2, tcn_number);
+	rs =prep.executeQuery();
+	boolean found = false;
+	while (rs.next())
+	{
+		found = true;
+	 	String country_name = rs.getString("country_name");
+        String ori = rs.getString("ori");
+        String tcr = rs.getString("tcr");
+        String cri = rs.getString("cri");
+        String dai = rs.getString("dai");
+       	String fileName = rs.getString("res_file_path");
+        String result = rs.getString("result");
+        String subject_id = rs.getString("subject_id");
+       
+        Timestamp timestamp = rs.getTimestamp("timestamp");
+        if (timestamp != null)
+        {
+        	String dateTime = timestamp.toString();
+			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			date = sdf.parse(dateTime);
+        	
+        }	
+       responseBuf.append(spanStart + "Priority:" + spanMid + tcn_number + spanEnd);
+       responseBuf.append(spanStart + "Date:" + spanMid + date + spanEnd);
+       responseBuf.append(spanStart + "Country:" + spanMid + country_name + spanEnd);
+       responseBuf.append(spanStart + "ORI:" + spanMid + ori + spanEnd);
+       responseBuf.append(spanStart + "TCR:" + spanMid + tcr + spanEnd);
+       responseBuf.append(spanStart + "CRI:" + spanMid + cri + spanEnd);
+       responseBuf.append(spanStart + "DAI:" + spanMid + dai + spanEnd);
+       responseBuf.append(spanStart + "Subject ID:" + spanMid + subject_id + spanEnd);
+       responseBuf.append(spanStart + "Result:" + spanMid + result + spanEnd);
+       responseBuf.append(spanStart + "File:" + spanMid + fileName + spanEnd);
+	}
+	if (!found)
+		  responseBuf.append("<span class=\"news_more\"><tr><td colspan=\"2\" align=\"center\"> No Response" + spanEnd);
+    rs.close();
+    conn.close();
+%>
+			<div class="submission">
+			<table name="Submissions" border="0" cellpadding="0.5"
+					cellspacing="1" align="center" width="450">
+        	<span class="news_more">
+        	<tr><th colspan="2">Submission Details</th>
+        	</tr>
+        	</span><br />
+        	<%=submissionBuf.toString()%>
+        	
+        	</table>
+        	</div>
+        	
+        	<div class="request">
+					
+					
+        	<table name="Requests" border="0" cellpadding="0.5"
+					cellspacing="1" align="center" width="400">
+        	<span class="news_more">
+        	<tr><th colspan="2">Request Details</th>
+        	</tr>
+        	</span>
+        	<%=requestBuf.toString()%>
+        	<br />
+        	</table>  
+        	</div>
+        	
+        	<div class="response">
+			
+        	<table name="Responses" border="0" cellpadding="0.5"
+					cellspacing="1" align="center" width="450">
+        	<span class="news_more">
+        	<tr><th colspan="2">Response Details</th>
+        	</tr>
+        	</span><br />
+        	<%=responseBuf.toString()%>
+        	</table> 
+        	
+        	</div> 
+            </center>
+            
+            
+			<br />

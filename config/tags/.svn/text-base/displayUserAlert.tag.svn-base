@@ -1,0 +1,105 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    String user = WebUtils.getOptionalParameter(request, "user", "ghamilton" );
+    String profileId = WebUtils.getRequiredParameter(request, "profile_id");
+    String person_id = WebUtils.getRequiredParameter(request, "person_id");
+      
+    int user_id = Integer.parseInt(person_id);
+	
+    Connection conn = new MraldConnection("main").getConnection();
+    int teamId = 0;
+    	
+    String query = 
+    "select  user_name, first_name, last_name, by_email, by_fax, by_telephone, by_mobile_phone, by_voice_message, by_text_message, profile_name, saife_team_team_id "
+	+" from user_profile, saife_user where saife_user.user_id = user_profile.saife_user_user_id and saife_user.user_id = ? and profile_id= ?";
+    
+    PreparedStatement prep = conn.prepareStatement(query);
+	prep.setInt(1, user_id);
+	
+	int profile_id = Integer.parseInt(profileId);
+	
+	prep.setInt(2, profile_id);
+	
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("displayUserAlerts.tag", "main", query, logInfo);
+    ResultSet rs =prep.executeQuery();
+    
+    MiscUtils.logQueryRun(startTime, logInfo);
+    %>
+    <style type="text/css"> 
+        .RED { color:red; } 
+        .GREEN { color:darkgreen; } 
+        .YELLOW { color:orange; } 
+    </style>
+     
+    <%  
+    String name ="";
+    String first_name ="";
+    String last_name ="";
+    String profile_name ="";
+    int by_email =0;
+    int by_fax =0;
+    int by_telephone =0;
+    int by_mobile_phone =0;
+    int by_voice_message =0;
+    int by_text_message =0;
+    if (rs.next())
+    {
+         name = rs.getString("user_name");
+         first_name = rs.getString("first_name");
+         last_name = rs.getString("last_name");
+         profile_name = rs.getString("profile_name");
+         teamId = rs.getInt("saife_team_team_id");
+         by_email = rs.getInt("by_email");
+         by_fax = rs.getInt("by_fax");
+         by_telephone = rs.getInt("by_telephone");
+         by_mobile_phone = rs.getInt("by_mobile_phone");
+         by_voice_message = rs.getInt("by_voice_message");
+         by_text_message = rs.getInt("by_text_message");
+        
+     }
+      
+    String team_name ="";
+    String teamQuery = "Select team_name from saife_team where team_id=?";
+    prep = conn.prepareStatement(teamQuery);  
+    prep.setInt(1, teamId);
+    rs =prep.executeQuery();
+   
+    if (rs.next())
+    	team_name = rs.getString("team_name");
+      
+        %>
+        	<table name="Alerts" width="500" border="0" cellpadding="1"
+					cellspacing="1" align="center">
+					<tr class="header"><th><%=team_name%></th></tr>
+			</table>
+			<br/>
+			
+        	<table name="Alerts" width="500" border=".1" cellpadding="1"
+					cellspacing="1" align="center">
+					<br/>
+        	<tr class="header"><th>By Email</th><th>By Fax</th><th>By Telephone</th><th>By Mobile</th><th>By Voice Message</th><th>By Text Message</th></tr>
+        	<tr>
+        	<td class="class<%=by_email%>"><%=by_email%></td>
+        	<td class="class<%=by_fax%>"><%=by_fax%></td>
+        	<td class="class<%=by_telephone%>"><%=by_telephone%></td>
+        	<td class="class<%=by_mobile_phone%>"><%=by_mobile_phone%></td>
+        	<td class="class<%=by_voice_message%>"><%=by_voice_message%></td>
+        	<td class="class<%=by_text_message%>"><%=by_text_message%></td>
+        	
+        	</tr>
+        	<tr>
+        	 
+        	</tr>
+            </table>
+            <br/>
+            <center>
+            <input type="button" value ="Close" onclick="$('#profileDetails<%=profile_id%>').html('')"></input>
+  			<input type="button" value ="Edit" onclick="$('#profileDetails<%=profileId%>').load('editUserAlerts.jsp?profile_id=<%=profileId%>&person_id=<%=person_id%>')"></input>
+  			<input type="button" value ="Delete" onclick="$('#profileDetails<%=profileId%>').load('deleteUserAlerts.jsp?profile_id=<%=profileId%>&person_id=<%=person_id%>')"></input>
+  			</center>
+            </center>
+        <%	
+    rs.close();
+    conn.close();
+%>

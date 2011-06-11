@@ -1,0 +1,8 @@
+DESCRIPTION=An internal database for maintaining MRALD user and other administrative data.  Only administrative users will see this dataset.
+DBDRIVER=org.postgresql.Driver
+DBLOGFILE=mralddb.log
+DBLOGIN=postgres
+DBNAME=admin
+DBPASSWORD=P0stgr3s!@
+DBSERVER=jdbc:postgresql://localhost:5432/saife
+SCHEMA=public

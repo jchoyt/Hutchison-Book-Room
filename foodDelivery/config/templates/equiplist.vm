@@ -1,0 +1,9 @@
+#foreach($i in $inv)
+    #if ($i.type == "weapon")
+        #if($i.equipped)
+            <option value="${i.itemid}" selected="true">$i.name ($i.condition) ($i.ammoleft)</option>
+        #else
+            <option value="${i.itemid}">$i.name ($i.condition) ($i.ammoleft)</option>
+        #end
+    #end
+#end.

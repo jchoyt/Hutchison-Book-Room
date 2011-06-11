@@ -1,0 +1,23 @@
+<Context path="/" crossContext="true" reloadable="true" debug="1">
+   <Resource name="jdbc/postgres" auth="Container"
+          type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://127.0.0.1:5432/food_delivery"
+          username="jchoyt" password="ou812ic" maxActive="100" maxIdle="10" maxWait="-1"/>
+
+      <!-- Realm for invasion -->
+      <Realm className="org.apache.catalina.realm.JDBCRealm"
+            debug="99"
+            driverName="org.postgresql.Driver"
+            connectionURL="jdbc:postgresql:food_delivery"
+            connectionName="jchoyt"
+            connectionPassword="ou812ic"
+            userTable="deliverers"
+            userNameCol="userid"
+            userCredCol="password"
+            userRoleTable="user_roles"
+            roleNameCol="rolename"
+            digest="SHA"
+        />
+
+</Context>
+

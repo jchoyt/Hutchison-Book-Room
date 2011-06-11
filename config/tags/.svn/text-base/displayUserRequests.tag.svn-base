@@ -1,0 +1,72 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*,java.text.DateFormat, java.text.SimpleDateFormat" %>
+<%@ tag import="org.mitre.saife.utils.*" %>
+<%
+    // String user = WebUtils.getOptionalParameter(request, "user", "3" );
+      
+    //   int userId = Integer.parseInt(user);
+      
+    String person_id = "0";
+	Object person= request.getAttribute("person_id");
+   	if (person != null)
+   		person_id = person.toString();
+    
+    int userId = Integer.parseInt(person_id);
+    
+    
+    String query = "SELECT submission.tcn, response.result, submission.timestamp " +
+                  " FROM request, submission LEFT OUTER JOIN response ON (submission.submission_id = response.submission_submission_id) " + 
+                  " where request.request_id = submission.request_request_id and "+ 
+                  " request.saife_user_user_id = ? ";
+   
+    Connection conn = new MraldConnection("main").getConnection();
+    PreparedStatement prep = conn.prepareStatement(query);
+	prep.setInt(1, userId);
+	
+	System.out.println("displayUserRequests : query " + prep.toString());
+	
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("displayUserRequests.tag", "main", query, logInfo);
+    ResultSet rs =prep.executeQuery();
+    
+    MiscUtils.logQueryRun(startTime, logInfo);
+    String status="Processing";
+    %>
+    	
+					<center>
+					<table name="Responses" border="0.5" cellpadding="5"
+					cellspacing="1" align="center">
+                    <tr><th>TCN</th><th>Staus</th><th>Submit Date</th></tr>
+					
+        	
+    <%    	
+    int i=4;
+    String date="";
+    while (rs.next())
+    {
+        String tcn_number = rs.getString("tcn");
+        Timestamp timestamp = rs.getTimestamp("timestamp");
+        if (timestamp != null)
+        {
+			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+			date = sdf.format(timestamp);
+        }	
+        status = rs.getString("result");
+        int statusNo = i--;
+        if (i==0) i=4;
+        
+        if (status == null)
+        	status = "Processing";
+    %>
+        	<tr><td><a href="displayRequests.jsp?person_id=<%=person_id%>&tcn_number=<%=tcn_number%>"><%=tcn_number%></a></td><td><text class="class<%=statusNo%>"><%=status%></text></td><td align="right"><%=date%></td></tr> 
+    <%	
+        
+    }
+    
+    rs.close();
+    conn.close();
+%>
+</table>
+            </center>
+            
+            
+			<br />

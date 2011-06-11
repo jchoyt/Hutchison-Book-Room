@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkFlow>
+  <WfPath>
+    <WfName>UserLogin</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.util.UserLogin</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+  </WfPath>
+   <WfPath>
+    <WfName>UserRegistration</WfName>
+    <WfObject>
+      <ObjectName>org.mitre.mrald.util.UserRegistration</ObjectName>
+      <Order>1</Order>
+    </WfObject>
+  </WfPath>
+</WorkFlow>

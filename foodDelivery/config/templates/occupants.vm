@@ -1,0 +1,8 @@
+#foreach($occ in $occs)
+<tr>
+    <td><a href="/viewCharacter.jsp?id=${occ.id}">${occ.name}</a></td>
+    <td>${occ.level}</td>
+    <td><img alt="" src="/i/hp-${occ.hp}.png"/></td>
+    <td><a href="#" onmouseover="showtarget(${occ.id})">>></a><span style="display:none" id="desc-${occ.id}"><a href="#" onclick="attack(${occ.id})">Attack ${occ.name}</a></span></td>
+</tr>
+#end

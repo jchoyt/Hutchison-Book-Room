@@ -1,0 +1,101 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    String person_id = WebUtils.getOptionalParameter(request, "person_id", "0" );
+    String profileId = WebUtils.getOptionalParameter(request, "profile_id", "test" );
+      
+    Connection conn = new MraldConnection("main").getConnection();
+    
+    int user_id=0;
+    user_id = Integer.parseInt(person_id);
+    System.out.println("addUserAlerts: person_id " + user_id);
+    String query = "select  user_id, user_name, first_name, last_name "
+						+" from saife_user where  user_id = ?  ";
+    	
+    PreparedStatement prep = conn.prepareStatement(query);
+	prep.setInt(1, user_id);
+	ResultSet rs = prep.executeQuery();
+	System.out.println("addUserAlerts : About to execute query " + prep.toString());
+          
+    StringBuffer teamList = new StringBuffer();
+    
+    String name="";
+    String first_name="";
+    String last_name ="";
+	if (rs.next())
+	{
+		    user_id = rs.getInt("user_id");
+		    name = rs.getString("user_name");
+        	first_name = rs.getString("first_name");
+            last_name = rs.getString("last_name");
+	}
+	
+	query = "select  team_id, team_name  "
+			+" from saife_team, team_user  " 
+			+ "  where saife_team_team_id = team_id and saife_user_user_id =? ";
+	 prep = conn.prepareStatement(query);
+	 
+	 prep.setInt(1, user_id);
+	 System.out.println("addUserAlerts Tag : sql statement " + prep.toString());
+	  
+	 rs = prep.executeQuery();
+	 
+	 while (rs.next())
+	 {
+	 	int team_id = rs.getInt("team_id");
+	 	String team_name = rs.getString("team_name");
+	 	teamList.append("<option value=\""+ team_id +"\">" + team_name + "</option>");
+	 }
+    %>
+    <div class="wide_table_top">
+					<div align="center"><span class="title_panel"><%=first_name%> <%=last_name%> : Profile Name:<input type="text" name="profile_name" ></input></span> </div>
+		 </div>
+    	 <div class="wide_table_content">
+					<div class="wide_table_text">
+					<center>
+					
+					Select Team  <select name="team_id"><option></option><%=teamList.toString()%></Select>
+					<br/>
+					<table name="Alerts" width="500" border=".1" cellpadding="1"
+					cellspacing="1" align="center">
+					<br/>
+    <tr class="header">
+        	<th>Method / Priority</th><th class="class1">1</th><th class="class2">2</th><th class="class3">3</th><th class="class4">4</th><th class="class5">5</th><th class="class6">6</th></tr>
+        	<%
+        	    StringBuffer byEmail= new StringBuffer("<td>Email</td>");
+        		StringBuffer byPhone= new StringBuffer("<td>Phone</td>");
+        		StringBuffer byFax= new StringBuffer("<td>Fax</td>");
+        		StringBuffer byMobile= new StringBuffer("<td>Mobile</td>");
+        		StringBuffer byVoiceMail= new StringBuffer("<td>Voice Mail</td>");
+        		StringBuffer byTextMessage= new StringBuffer("<td>Text Message</td>");
+        		
+        		for (int i=1; i < 7; i++)
+        		{	
+        			byEmail.append("<td><input type=\"radio\" name=\"byEmail\" value=\"" + i + "\"></td>");        			
+        			byPhone.append("<td><input type=\"radio\" name=\"byPhone\" value=\"" + i + "\"></td>");       			
+        			byFax.append("<td><input type=\"radio\" name=\"byFax\" value=\"" + i + "\"></td>");        			
+        			byMobile.append("<td><input type=\"radio\" name=\"byMobile\" value=\"" + i + "\"></td>");        			       			
+        			byVoiceMail.append("<td><input type=\"radio\" name=\"byVoiceMail\" value=\"" + i + "\"></td>");
+        			byTextMessage.append("<td><input type=\"radio\" name=\"byTextMessage\" value=\"" + i + "\"></td>");
+        		}
+        	%>
+        	<input type="hidden" name="newValue" value="true"></input>
+        	<input type="hidden" name="user_id" value="<%=user_id%>"></input>
+        	<tr align="center"><%=byEmail.toString()%></tr>
+        	<tr align="center"><%=byPhone.toString()%></tr>
+        	<tr align="center"><%=byFax.toString()%></tr>
+        	<tr align="center"><%=byMobile.toString()%></tr>
+        	<tr align="center"><%=byVoiceMail.toString()%></tr>
+        	<tr align="center"><%=byTextMessage.toString()%></tr>
+        	
+            </table>
+            </center>
+            </div>
+            </div>
+            <div class="wide_table_bottom">
+			</div>
+			<br />
+			
+    <%
+    rs.close();
+    conn.close();
+%>

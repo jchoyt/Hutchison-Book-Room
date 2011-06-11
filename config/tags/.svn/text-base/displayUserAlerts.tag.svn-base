@@ -1,0 +1,77 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    String user = WebUtils.getOptionalParameter(request, "user", "ghamilton" );
+    String person_id = WebUtils.getRequiredParameter(request, "person_id");
+   
+    int user_id = Integer.parseInt(person_id);
+    
+    String query = 
+    "select  user_name, first_name, last_name, by_email, by_fax, by_telephone, by_mobile_phone, by_voice_message, profile_name "
+	+" from user_profile, saife_user where saife_user.user_id = user_profile.saife_user_user_id and saife_user.user_id = ? ";
+    Connection conn = new MraldConnection("main").getConnection();
+    PreparedStatement prep = conn.prepareStatement(query);
+	prep.setInt(1, user_id);
+	
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("displayUserAlerts.tag", "main", query, logInfo);
+    ResultSet rs =prep.executeQuery();
+    
+    MiscUtils.logQueryRun(startTime, logInfo);
+    %>
+    <style type="text/css"> 
+        .RED { color:red; } 
+        .GREEN { color:darkgreen; } 
+        .YELLOW { color:orange; } 
+    </style>
+   
+    <%    	
+    while (rs.next())
+    {
+        String name = rs.getString("user_name");
+        String first_name = rs.getString("first_name");
+        String last_name = rs.getString("last_name");
+        String profile_name = rs.getString("profile_name");
+        
+    	%>
+    	 <div class="wide_table_top">
+					<div align="center"><span class="title_panel"><%=profile_name%></span> </div>
+		 </div>
+    	 <div class="wide_table_content">
+					<div class="wide_table_text">
+					<center>
+					<table name="Alerts" width="500" border=".1" cellpadding="1"
+					cellspacing="1" align="center">
+					<br/>
+        	
+       <% 	
+        int by_email = rs.getInt("by_email");
+        int by_fax = rs.getInt("by_fax");
+        int by_telephone = rs.getInt("by_telephone");
+        int by_mobile_phone = rs.getInt("by_mobile_phone");
+        int by_voice_message = rs.getInt("by_voice_message");
+        
+        %>
+        	<tr class="header"><th>By Email</th><th>By Fax</th><th>By Telephone</th><th>By Mobile</th><th>By Voice Message</th></tr>
+        	<tr>
+        	<td class="class<%=by_email%>"><%=by_email%></td>
+        	<td class="class<%=by_fax%>"><%=by_fax%></td>
+        	<td class="class<%=by_telephone%>"><%=by_telephone%></td>
+        	<td class="class<%=by_mobile_phone%>"><%=by_mobile_phone%></td>
+        	<td class="class<%=by_voice_message%>"><%=by_voice_message%></td>
+        	
+        	</tr>
+        	
+            </table>
+            </center>
+            </div>
+            </div>
+            <div class="wide_table_bottom">
+			</div>
+			<br />
+        <%	
+        
+    }
+    
+    rs.close();
+    conn.close();
+%>

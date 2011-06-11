@@ -1,0 +1,23 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    String query = "select dr_id, dr_name from designated_repository_lkup";
+    MraldConnection conn = new MraldConnection("main");
+    ResultSet rs =null;
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("showDbs.tag", "main", query, logInfo);
+    rs = conn.executeQuery(query);
+    MiscUtils.logQueryRun(startTime, logInfo);
+    while (rs.next())
+    {
+        int id = rs.getInt("dr_id");
+        String name = rs.getString("dr_name");
+        %>
+        <option value="<%=id%>"><%=name%></option>
+        <%	
+    }
+    rs.close();
+    conn.close();
+%>
+
+
+ 

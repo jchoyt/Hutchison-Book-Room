@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/saife/!svn/ver/140/trunk/config/tags
+END
+showAlerts.tag
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/saife/!svn/ver/123/trunk/config/tags/showAlerts.tag
+END
+showDbs.tag
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/saife/!svn/ver/36/trunk/config/tags/showDbs.tag
+END
+userDropdown.tag
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/saife/!svn/ver/40/trunk/config/tags/userDropdown.tag
+END
+displayUserTeamsSummary.tag
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/saife/!svn/ver/121/trunk/config/tags/displayUserTeamsSummary.tag
+END
+displayUserAlertsSummary.tag
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/saife/!svn/ver/120/trunk/config/tags/displayUserAlertsSummary.tag
+END
+displayUserRequest.tag
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/saife/!svn/ver/123/trunk/config/tags/displayUserRequest.tag
+END
+addUserAlerts.tag
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/saife/!svn/ver/140/trunk/config/tags/addUserAlerts.tag
+END
+displayUserAlerts.tag
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/saife/!svn/ver/121/trunk/config/tags/displayUserAlerts.tag
+END
+displayUserTeams.tag
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/saife/!svn/ver/83/trunk/config/tags/displayUserTeams.tag
+END
+addUserTeams.tag
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/saife/!svn/ver/121/trunk/config/tags/addUserTeams.tag
+END
+displayUserTeam.tag
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/saife/!svn/ver/121/trunk/config/tags/displayUserTeam.tag
+END
+editUserAlerts.tag
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/saife/!svn/ver/140/trunk/config/tags/editUserAlerts.tag
+END
+dbDropdown.tag
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/saife/!svn/ver/40/trunk/config/tags/dbDropdown.tag
+END
+displayUserAlert.tag
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/saife/!svn/ver/130/trunk/config/tags/displayUserAlert.tag
+END
+myRequests.tag
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/saife/!svn/ver/34/trunk/config/tags/myRequests.tag
+END
+displayUserRequests.tag
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/saife/!svn/ver/123/trunk/config/tags/displayUserRequests.tag
+END
+showUserPrefsEdit.tag
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/saife/!svn/ver/133/trunk/config/tags/showUserPrefsEdit.tag
+END
+editUserTeam.tag
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/saife/!svn/ver/122/trunk/config/tags/editUserTeam.tag
+END
+showPrefs.tag
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/saife/!svn/ver/125/trunk/config/tags/showPrefs.tag
+END

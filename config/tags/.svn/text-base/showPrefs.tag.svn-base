@@ -1,0 +1,69 @@
+<%@ tag import="java.io.*,java.util.*,org.mitre.mrald.taglib.*,org.mitre.mrald.util.*,java.sql.*" %>
+<%
+    String user = WebUtils.getOptionalParameter(request, "user", "ghamilton" );
+    String person_id = WebUtils.getOptionalParameter(request, "person_id", "-1" );
+      
+    System.out.println("showPrefs : person_id " + person_id);
+    int user_id = Integer.parseInt(person_id);
+    
+    String query = 
+    "select user_name, first_name, last_name, tele_number, mobile_number, email_addr , mobile_carrier "
+	+" from saife_user where user_id = ? ";
+    Connection conn = new MraldConnection("main").getConnection();
+    PreparedStatement prep = conn.prepareStatement(query);
+	prep.setInt(1, user_id);
+	
+    StringBuffer logInfo = new StringBuffer();
+    long startTime = MiscUtils.logQuery("showPrefs.tag", "main", query, logInfo);
+    ResultSet rs =prep.executeQuery();
+    
+    MiscUtils.logQueryRun(startTime, logInfo);
+    %>
+    <style type="text/css"> 
+        .RED { color:red; } 
+        .GREEN { color:darkgreen; } 
+        .YELLOW { color:orange; } 
+    </style>
+   
+    <%    	
+    while (rs.next())
+    {
+        String name = rs.getString("user_name");
+         String first_name = rs.getString("first_name");
+        String last_name = rs.getString("last_name");
+       
+        
+    	%>
+    	 <div class="wide_table_top">
+					<div align="center"><span class="title_panel"><%=first_name%> <%=last_name%></span> </div>
+		 </div>
+    	 <div class="wide_table_content">
+					<div class="wide_table_text">
+					<center>
+					<table>
+        	<tr><th>User</th><th><b><%=name%></b></th></tr>
+       <% 	
+         String tele_number = rs.getString("tele_number");
+        String mobile_number = rs.getString("mobile_number");
+        String email_addr = rs.getString("email_addr");
+         String carrier = rs.getString("mobile_carrier");
+        %>
+        	<tr><td>Name</td><td><%=first_name%> <%=last_name%></td></tr>
+        	<tr><td>Telephone</td><td><%=tele_number%></td></tr>
+        	<tr><td>Mobile</td><td><%=mobile_number%></td></tr>
+        	<tr><td>Email</td><td><%=email_addr%></td></tr>      	
+            <tr><td>Carrier</td><td><%=carrier%></td></tr>      	
+            </table>
+            </center>
+            </div>
+            </div>
+            <div class="wide_table_bottom">
+							</div>
+			<br />
+        <%	
+        
+    }
+    
+    rs.close();
+    conn.close();
+%>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+ version="2.0">
+    <description>The MRALD custom tag library contains tags which
+    are used to support the MRALD system Copyright (c) 2002 The
+    MITRE Corporation. ALL RIGHTS RESERVED.</description>
+    <tlib-version>1.0</tlib-version>
+    <short-name>MRALD</short-name>
+    <uri>/WEB-INF/mrald.tld</uri>
+    <tag>
+        <name>NewsAdmin</name>
+        <tag-class>
+        org.mitre.mrald.taglib.NewsAdminTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>validate</name>
+        <tag-class>
+        org.mitre.mrald.taglib.ValidateUserTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>doAdminCheck</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+<!-- Pass in the email address to check -->
+            <name>doEmailCheck</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+<!-- Pass in the User's COI to check -->
+            <name>doCoiCheck</name>
+            <required>false</required>
+        </attribute>
+	<attribute>
+<!-- Pass in if the small version of login is to be used -->
+            <name>smallForm</name>
+            <required>false</required>
+	    <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>FormsList</name>
+        <tag-class>
+        org.mitre.mrald.taglib.FormsListTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>formType</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <name>allUsers</name>
+        <tag-class>org.mitre.mrald.taglib.AllUsersTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>ListConfig</name>
+        <tag-class>
+        org.mitre.mrald.taglib.ListConfigTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>AdminBox</name>
+        <tag-class>org.mitre.mrald.taglib.AdminBoxTag</tag-class>
+        <body-content>empty</body-content>
+    </tag>
+    <tag>
+        <name>NewsDisplay</name>
+        <tag-class>org.mitre.mrald.taglib.NewsTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>newsArchive</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+    <tag>
+        <name>ListDB</name>
+        <tag-class>
+        org.mitre.saife.utils.ListDatabases</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>open</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>datasource</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>
+
