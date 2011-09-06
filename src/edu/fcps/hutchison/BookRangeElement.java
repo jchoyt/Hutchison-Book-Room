@@ -15,6 +15,8 @@
  */
 package edu.fcps.hutchison;
 
+import org.mitre.mrald.util.*;
+import org.mitre.mrald.query.*;
 import org.mitre.mrald.control.MsgObject;
 import org.mitre.mrald.formbuilder.FormBuilderElement;
 import org.mitre.mrald.util.Config;
@@ -41,7 +43,7 @@ import java.util.StringTokenizer;
  */
 public class BookRangeElement extends SqlElements implements FormBuilderElement
 {
-/**
+    /**
      *  Constructor for the QueryElements object
      *
      *@since
@@ -50,6 +52,7 @@ public class BookRangeElement extends SqlElements implements FormBuilderElement
     {
         super(  );
         elementType = "BookRange";
+        MraldOutFile.logToFile(Config.getProperty("LOGFILE"), "Created BookRangeElement with simple constructor"      );
     }
 
     /**
@@ -62,6 +65,7 @@ public class BookRangeElement extends SqlElements implements FormBuilderElement
     {
         super( msg );
         elementType = "BookRange";
+        MraldOutFile.logToFile(Config.getProperty("LOGFILE"), "Created BookRangeElement with MsgObject constructor"      );
     }
 
     /**
@@ -197,7 +201,7 @@ public class BookRangeElement extends SqlElements implements FormBuilderElement
         {
             if ( !maxValue.equals( "" ) )
             {
-                newValue = minValue + " between minlevel and maxlevel or " + maxvalue " + between minlevel and maxlevel";
+                newValue = minValue + " between minlevel and maxlevel or " + maxValue + " between minlevel and maxlevel";
             }
             else
             {
@@ -230,27 +234,8 @@ public class BookRangeElement extends SqlElements implements FormBuilderElement
      */
     public String preProcess( MsgObject msg, String currentName )
     {
-        //Get the Label infront of the ~
-        //Filter1~StartTime - only want the Filter1 -then look for all
-        //other items with Filter1 - add them to nvValues and remove form msgObjects
-        //to make sure that duplicate objects do not get created.
-        StringTokenizer currentNameToken = new StringTokenizer( currentName, FormTags.TOKENIZER_STR );
-
-        //Set this item active
-        currentName = currentNameToken.nextToken(  );
-
-        //Just get the value itself
-        //String valueList = msg.getValue(newStr)[0];
-        String newStr = currentName + FormTags.TOKENIZER_STR + FormTags.MINTAG;
-        String valueList = msg.getValue( newStr )[0];
-
-        nameValues.setValue( FormTags.MINTAG, valueList );
-        msg.removeValue( newStr );
-
-        newStr = currentName + FormTags.TOKENIZER_STR + FormTags.MAXTAG;
-        valueList = msg.getValue( newStr )[0];
-        nameValues.setValue( FormTags.MAXTAG, valueList );
-        msg.removeValue( newStr );
+        String[] groupTags = { "Min", "Max" };
+        collectElementGroup( msg, currentName, groupTags );
 
         return currentName;
     }

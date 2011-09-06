@@ -27,15 +27,16 @@
                         <input name="outputFormat26" type="hidden" value="fieldname:keyword~nicename:Keywords~type:String" />
                         <input name="outputFormat27" type="hidden" value="fieldname:name~nicename:Genre~type:String" />
                         <input name="outputFormat28" type="hidden" value="fieldname:color~nicename:Color~type:String" />
-                        <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:id~type:Numeric" />
+                        <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:Book ID~type:Numeric" />
                         <input name="outputFormat210" type="hidden" value="fieldname:title~nicename:Title~type:String" />
                         <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author~type:String" />
 
                         <%-- Filter - Range of Book Level --%>
                         <b>Range of Book Level</b>
                         <br />
-                        <i>minimum</i>:   <input name="FilterRangeMin1" type="text" size="9" /><input name="FilterRangeMin1" value="Table:book~Field:minlevel~Operator:&gt;=~Type:Numeric" type="hidden" /> (inclusive)<br />
-                        <i>maximum</i>: <input name="FilterRangeMax1" type="text" size="9" /><input name="FilterRangeMax1" value="Table:book~Field:minlevel~Operator:&lt;=~Type:Numeric" type="hidden" /> (inclusive)
+                        <input type="hidden" name="BookRange1" />
+                        <i>minimum</i>: <input name="BookRange1~Min" type="text" size="9" id="minlevel" onchange='$("#maxlevel").val($("#minlevel").val());' /><br />
+                        <i>maximum</i>: <input name="BookRange1~Max" type="text" size="9"  id="maxlevel"/>
                         <br/><br/>
 
                         <%-- Filter - Color --%>
@@ -43,6 +44,7 @@
                         <br />
                         <input type="hidden" name="FilterCategorical1" value="Table:book~Field:color~Operator:=~Type:" />
                         <select name="FilterCategorical1">
+                            <option value=""></option>
                             <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select>
                         </select>
                         <br/><br/>
@@ -107,7 +109,6 @@
                               </option>
                         </select>
                         <input name="Filter3" type="text" size="22" id="Filter3ListValue" />
-                        <img src="../images/mrald_sample.jpg" height="24" width="24" onclick="showSample('popUp3', 'Filter3List' ,'../')" />Display Sample
 
                                 <span id="popUp3">
                         <input name="dummy" type="hidden" />
@@ -159,7 +160,6 @@
                               </option>
                         </select>
                         <input name="Filter4" type="text" size="22" id="Filter4ListValue" />
-                        <img src="../images/mrald_sample.jpg" height="24" width="24" onclick="showSample('popUp4', 'Filter4List' ,'../')" />Display Sample
 
                                 <span id="popUp4">
                         <input name="dummy" type="hidden" />
@@ -211,7 +211,6 @@
                               </option>
                         </select>
                         <input name="Filter5" type="text" size="22" id="Filter5ListValue" />
-                        <img src="../images/mrald_sample.jpg" height="24" width="24" onclick="showSample('popUp5', 'Filter5List' ,'../')" />Display Sample
 
                                 <span id="popUp5">
                         <input name="dummy" type="hidden" />
