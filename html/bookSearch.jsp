@@ -1,4 +1,4 @@
-r<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ page import="org.mitre.mrald.util.Config" %><%@ taglib uri="/WEB-INF/tlds/mrald.tld" prefix="mrald"%><mrald:validate />
 <%@include file='header.html'%>
         <script type="text/javascript">
@@ -17,225 +17,291 @@ r<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
                 <h3 style="border:1px solid #6e2b32;background-image: url(images/hover_link_bg.jpg);margin:0px;padding:1em;"><a href="#" style="color:#fff;font-size:1em;">Filters</a></h3>
                 <div style="padding:1.5em;">
                     <p>
-                        <input name="outputFormat21" type="hidden" value="fieldname:level~nicename:Level~type:String">
-                        <input name="outputFormat22" type="hidden" value="fieldname:box~nicename:Box Number~type:String">
-                        <input name="outputFormat23" type="hidden" value="fieldname:title~nicename:Title~type:String">
-                        <input name="outputFormat24" type="hidden" value="fieldname:word_count~nicename:Word Count~type:String">
-                        <input name="outputFormat25" type="hidden" value="fieldname:author~nicename:Author~type:String">
-                        <input name="outputFormat26" type="hidden" value="fieldname:keyword~nicename:Keywords~type:String">
-                        <input name="outputFormat27" type="hidden" value="fieldname:id~nicename:ID~type:String">
-                        <input name="outputFormat29" type="hidden" value="fieldname:color~nicename:Color~type:String">
-                        <input name="outputFormat210" type="hidden" value="fieldname:copy_count~nicename:Number of Copies~type:String">
-                            <strong>Color</strong>
-                            <br/>
-                            <input type="hidden" name="FilterCategorical1" value="Table:book~Field:color~Operator:=~Type:String"/>
-                            <select name="FilterCategorical1">
-                            <option value=""/>
-                                        <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select>
-                            <br/><br/>
-                            <strong>Number of copies is more than</strong><input type="text" name="Filter12" size="5"/>
-                            <input type="hidden" name="Filter12" value="Table:book~Field:copy_count~Operator:&gt;~Type:String"/>
-                            <br/><br/>
-                            <strong>Keyword (only one)</strong>
-                            <br/>
-                            <input type="text" name="Filter1" size="15"/>
-                            <input type="text" name="Filter1" size="15"/>
-                            <input type="text" name="Filter1" size="15"/>
-                            <input type="hidden" name="Filter1" value="Table:book~Field:keyword~Operator:pg contains~Type:String"/>
-                            <br/><br/>
-                            <strong>General Filters</strong> - Select field, operator, and filter value<br/>
-                            <select name="Filter2" id="Filter2List">
-                                <option/>
-                                <option value="Table:book~Field:level~Type:String">
-                                    Level</option>
-                                <option value="Table:book~Field:title~Type:String">
-                                    Title</option>
-                                <option value="Table:book~Field:word_count~Type:String">
-                                    Word Count</option>
-                                <option value="Table:book~Field:author~Type:String">
-                                    Author</option>
-                                <option value="Table:book~Field:keyword~Type:String">
-                                    Keywords</option>
-                                <option value="Table:book~Field:summary~Type:String">
-                                    Summary</option>
-                                    Publisher</option>
-                                <option value="Table:book~Field:color~Type:String">
-                                    Color</option>
-                                <option value="Table:book~Field:copy_count~Type:String">
-                                    Number of Copies</option>
-                                <option value="Table:book~Field:box~Type:String">
-                                    Box Number</option>
-                            </select> <select name="Filter2">
-                                <option value="Operator:pg contains">
-                                    Contains</option>
-                                <option value="Operator:=">
-                                    Equals (=)</option>
-                                <option value="Operator:!=">
-                                    Not equal (!=)</option>
-                                <option value="Operator:&lt;">
-                                    &lt;</option>
-                                <option value="Operator:&gt;">
-                                    &gt;</option>
-                                <option value="Operator:&lt;=">
-                                    &lt;=</option>
-                                <option value="Operator:&gt;=">
-                                    &gt;=</option>
-                                <option value="Operator:IN">
-                                    IN</option>
-                                <option value="Operator:NOT IN">
-                                    NOT IN</option>
-                                <option value="Operator:IS NULL">
-                                    IS NULL</option>
-                                <option value="Operator:IS NOT NULL">
-                                    IS NOT NULL</option>
-                            </select> <input name="Filter2" type="text" size="22" id="Filter2ListValue"><br/>
-                            <select name="Filter3" id="Filter3List">
-                                <option/>
-                                <option value="Table:book~Field:level~Type:String">
-                                    Level</option>
-                                <option value="Table:book~Field:title~Type:String">
-                                    Title</option>
-                                <option value="Table:book~Field:word_count~Type:String">
-                                    Word Count</option>
-                                <option value="Table:book~Field:author~Type:String">
-                                    Author</option>
-                                <option value="Table:book~Field:keyword~Type:String">
-                                    Keywords</option>
-                                <option value="Table:book~Field:summary~Type:String">
-                                    Summary</option>
-                                    Publisher</option>
-                                <option value="Table:book~Field:color~Type:String">
-                                    Color</option>
-                                <option value="Table:book~Field:copy_count~Type:String">
-                                    Number of Copies</option>
-                                <option value="Table:book~Field:box~Type:String">
-                                    Box Number</option>
-                            </select> <select name="Filter3">
-                                <option value="Operator:pg contains">
-                                    Contains</option>
-                                <option value="Operator:=">
-                                    Equals (=)</option>
-                                <option value="Operator:!=">
-                                    Not equal (!=)</option>
-                                <option value="Operator:&lt;">
-                                    &lt;</option>
-                                <option value="Operator:&gt;">
-                                    &gt;</option>
-                                <option value="Operator:&lt;=">
-                                    &lt;=</option>
-                                <option value="Operator:&gt;=">
-                                    &gt;=</option>
-                                <option value="Operator:IN">
-                                    IN</option>
-                                <option value="Operator:NOT IN">
-                                    NOT IN</option>
-                                <option value="Operator:IS NULL">
-                                    IS NULL</option>
-                                <option value="Operator:IS NOT NULL">
-                                    IS NOT NULL</option>
-                            </select> <input name="Filter3" type="text" size="22" id="Filter3ListValue"><br/>
-                            <select name="Filter4" id="Filter4List">
-                                <option/>
-                                <option value="Table:book~Field:level~Type:String">
-                                    Level</option>
-                                <option value="Table:book~Field:title~Type:String">
-                                    Title</option>
-                                <option value="Table:book~Field:word_count~Type:String">
-                                    Word Count</option>
-                                <option value="Table:book~Field:author~Type:String">
-                                    Author</option>
-                                <option value="Table:book~Field:keyword~Type:String">
-                                    Keywords</option>
-                                <option value="Table:book~Field:summary~Type:String">
-                                    Summary</option>
-                                    Publisher</option>
-                                <option value="Table:book~Field:color~Type:String">
-                                    Color</option>
-                                <option value="Table:book~Field:copy_count~Type:String">
-                                    Number of Copies</option>
-                                <option value="Table:book~Field:box~Type:String">
-                                    Box Number</option>
-                            </select> <select name="Filter4">
-                                <option value="Operator:pg contains">
-                                    Contains</option>
-                                <option value="Operator:=">
-                                    Equals (=)</option>
-                                <option value="Operator:!=">
-                                    Not equal (!=)</option>
-                                <option value="Operator:&lt;">
-                                    &lt;</option>
-                                <option value="Operator:&gt;">
-                                    &gt;</option>
-                                <option value="Operator:&lt;=">
-                                    &lt;=</option>
-                                <option value="Operator:&gt;=">
-                                    &gt;=</option>
-                                <option value="Operator:IN">
-                                    IN</option>
-                                <option value="Operator:NOT IN">
-                                    NOT IN</option>
-                                <option value="Operator:IS NULL">
-                                    IS NULL</option>
-                                <option value="Operator:IS NOT NULL">
-                                    IS NOT NULL</option>
-                            </select> <input name="Filter4" type="text" size="22" id="Filter4ListValue"><br/>
+                        <input name="Link1" type="hidden" value="PrimaryLink:colors.id~SecondaryLink:book.color" />
+                        <input name="Link2" type="hidden" value="PrimaryLink:genres.id~SecondaryLink:book.genre" />
+                        <input name="outputFormat21" type="hidden" value="fieldname:box~nicename:Box Number~type:String" />
+                        <input name="outputFormat22" type="hidden" value="fieldname:copy_count~nicename:Number of Copies~type:Numeric" />
+                        <input name="outputFormat23" type="hidden" value="fieldname:minlevel~nicename:Minimum Level~type:Numeric" />
+                        <input name="outputFormat24" type="hidden" value="fieldname:maxlevel~nicename:Maximum Level~type:Numeric" />
+                        <input name="outputFormat25" type="hidden" value="fieldname:word_count~nicename:Word Count~type:String" />
+                        <input name="outputFormat26" type="hidden" value="fieldname:keyword~nicename:Keywords~type:String" />
+                        <input name="outputFormat27" type="hidden" value="fieldname:name~nicename:Genre~type:String" />
+                        <input name="outputFormat28" type="hidden" value="fieldname:color~nicename:Color~type:String" />
+                        <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:id~type:Numeric" />
+                        <input name="outputFormat210" type="hidden" value="fieldname:title~nicename:Title~type:String" />
+                        <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author~type:String" />
 
+                        <%-- Filter - Range of Book Level --%>
+                        <b>Range of Book Level</b>
+                        <br />
+                        <i>minimum</i>:   <input name="FilterRangeMin1" type="text" size="9" /><input name="FilterRangeMin1" value="Table:book~Field:minlevel~Operator:&gt;=~Type:Numeric" type="hidden" /> (inclusive)<br />
+                        <i>maximum</i>: <input name="FilterRangeMax1" type="text" size="9" /><input name="FilterRangeMax1" value="Table:book~Field:minlevel~Operator:&lt;=~Type:Numeric" type="hidden" /> (inclusive)
+                        <br/><br/>
+
+                        <%-- Filter - Color --%>
+                        <strong>Color</strong>
+                        <br />
+                        <input type="hidden" name="FilterCategorical1" value="Table:book~Field:color~Operator:=~Type:" />
+                        <select name="FilterCategorical1">
+                            <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select>
+                        </select>
+                        <br/><br/>
+
+                        <%-- Filter - Number of copies --%>
+                        <strong>Number of copies is more than</strong><input type="text" name="Filter12" size="5"/>
+                        <input type="hidden" name="Filter12" value="Table:book~Field:copy_count~Operator:&gt;~Type:String"/>
+                        <br/><br/>
+                        <strong>Keyword (only one)</strong>
+                        <br/>
+                        <input type="text" name="Filter1" size="15"/>
+                        <input type="text" name="Filter1" size="15"/>
+                        <input type="text" name="Filter1" size="15"/>
+                        <input type="hidden" name="Filter1" value="Table:book~Field:keyword~Operator:pg contains~Type:String"/>
+                        <br/><br/>
+
+                        <%-- Filter - General filters --%>
+                        <strong>General Filters</strong> - Select field, operator, and filter value<br/>
+                        <select name="Filter3" id="Filter3List">
+                        <option />
+                        <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option>
+                        <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option>
+                        <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
+                        <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
+                        <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
+                        <option value="Table:book~Field:box~Type:String~SqlThread:1">Box Number</option>
+                        <option value="Table:book~Field:copy_count~Type:Numeric~SqlThread:1">Number of Copies</option>
+                        <option value="Table:book~Field:minlevel~Type:Numeric~SqlThread:1">Minimum Level</option>
+                        <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
+                        <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
+                        <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
+                        </select>
+                        <select name="Filter3">
+                        <option />
+                        <option value="Operator:=">=
+                              </option>
+                        <option value="Operator:!=">Not equal (!=)
+                              </option>
+                        <option value="Operator:&lt;">&lt;
+                              </option>
+                        <option value="Operator:&gt;">&gt;
+                              </option>
+                        <option value="Operator:&lt;=">&lt;=
+                              </option>
+                        <option value="Operator:&gt;=">&gt;=
+                              </option>
+                        <option value="Operator:like">Contains
+                              </option>
+                        <option value="Operator:not like">Does Not Contain
+                              </option>
+                        <option value="Operator:starts">Starts With
+                              </option>
+                        <option value="Operator:not starts">Does Not Start With
+                              </option>
+                        <option value="Operator:IN">IN
+                              </option>
+                        <option value="Operator:NOT IN">NOT IN
+                              </option>
+                        <option value="Operator:IS NULL">IS NULL
+                              </option>
+                        <option value="Operator:IS NOT NULL">IS NOT NULL
+                              </option>
+                        </select>
+                        <input name="Filter3" type="text" size="22" id="Filter3ListValue" />
+                        <img src="../images/mrald_sample.jpg" height="24" width="24" onclick="showSample('popUp3', 'Filter3List' ,'../')" />Display Sample
+
+                                <span id="popUp3">
+                        <input name="dummy" type="hidden" />
+                        </span>
+                        <br />
+                        <select name="Filter4" id="Filter4List">
+                        <option />
+                        <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option>
+                        <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option>
+                        <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
+                        <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
+                        <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
+                        <option value="Table:book~Field:box~Type:String~SqlThread:1">Box Number</option>
+                        <option value="Table:book~Field:copy_count~Type:Numeric~SqlThread:1">Number of Copies</option>
+                        <option value="Table:book~Field:minlevel~Type:Numeric~SqlThread:1">Minimum Level</option>
+                        <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
+                        <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
+                        <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
+                        </select>
+                        <select name="Filter4">
+                        <option />
+                        <option value="Operator:=">=
+                              </option>
+                        <option value="Operator:!=">Not equal (!=)
+                              </option>
+                        <option value="Operator:&lt;">&lt;
+                              </option>
+                        <option value="Operator:&gt;">&gt;
+                              </option>
+                        <option value="Operator:&lt;=">&lt;=
+                              </option>
+                        <option value="Operator:&gt;=">&gt;=
+                              </option>
+                        <option value="Operator:like">Contains
+                              </option>
+                        <option value="Operator:not like">Does Not Contain
+                              </option>
+                        <option value="Operator:starts">Starts With
+                              </option>
+                        <option value="Operator:not starts">Does Not Start With
+                              </option>
+                        <option value="Operator:IN">IN
+                              </option>
+                        <option value="Operator:NOT IN">NOT IN
+                              </option>
+                        <option value="Operator:IS NULL">IS NULL
+                              </option>
+                        <option value="Operator:IS NOT NULL">IS NOT NULL
+                              </option>
+                        </select>
+                        <input name="Filter4" type="text" size="22" id="Filter4ListValue" />
+                        <img src="../images/mrald_sample.jpg" height="24" width="24" onclick="showSample('popUp4', 'Filter4List' ,'../')" />Display Sample
+
+                                <span id="popUp4">
+                        <input name="dummy" type="hidden" />
+                        </span>
+                        <br />
+                        <select name="Filter5" id="Filter5List">
+                        <option />
+                        <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option>
+                        <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option>
+                        <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
+                        <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
+                        <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
+                        <option value="Table:book~Field:box~Type:String~SqlThread:1">Box Number</option>
+                        <option value="Table:book~Field:copy_count~Type:Numeric~SqlThread:1">Number of Copies</option>
+                        <option value="Table:book~Field:minlevel~Type:Numeric~SqlThread:1">Minimum Level</option>
+                        <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
+                        <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
+                        <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
+                        </select>
+                        <select name="Filter5">
+                        <option />
+                        <option value="Operator:=">=
+                              </option>
+                        <option value="Operator:!=">Not equal (!=)
+                              </option>
+                        <option value="Operator:&lt;">&lt;
+                              </option>
+                        <option value="Operator:&gt;">&gt;
+                              </option>
+                        <option value="Operator:&lt;=">&lt;=
+                              </option>
+                        <option value="Operator:&gt;=">&gt;=
+                              </option>
+                        <option value="Operator:like">Contains
+                              </option>
+                        <option value="Operator:not like">Does Not Contain
+                              </option>
+                        <option value="Operator:starts">Starts With
+                              </option>
+                        <option value="Operator:not starts">Does Not Start With
+                              </option>
+                        <option value="Operator:IN">IN
+                              </option>
+                        <option value="Operator:NOT IN">NOT IN
+                              </option>
+                        <option value="Operator:IS NULL">IS NULL
+                              </option>
+                        <option value="Operator:IS NOT NULL">IS NOT NULL
+                              </option>
+                        </select>
+                        <input name="Filter5" type="text" size="22" id="Filter5ListValue" />
+                        <img src="../images/mrald_sample.jpg" height="24" width="24" onclick="showSample('popUp5', 'Filter5List' ,'../')" />Display Sample
+
+                                <span id="popUp5">
+                        <input name="dummy" type="hidden" />
+                        </span>
+                        <br />
                     </p>
                 </div>
                 <h3 style="border:1px solid #6e2b32;background-image: url(images/hover_link_bg.jpg);margin:0px;padding:1em;"><a href="#" style="color:#fff;;font-size:1em;">Output Options</a></h3>
                 <div style="padding:1.5em;">
                     <p>
                         <div style="float:left;margin-right:10em;">
-                            <input name="Select2" type="checkbox" value="Table:book~Field:title~Order:2" checked="">Title<br/>
-                            <input name="Select3" type="checkbox" value="Table:book~Field:word_count~Order:3" checked="">Word Count<br/>
-                            <input name="Select4" type="checkbox" value="Table:book~Field:author~Order:4" checked="">Author<br/>
-                            <input name="Select5" type="checkbox" value="Table:book~Field:keyword~Order:5">Keywords<br/>
-                            <input name="Select6" type="checkbox" value="Table:book~Field:id~Order:6">ID<br/>
+                            <input name="Select1" type="checkbox" value="Table:genres~Field:name~Order:13~SqlThread:1" checked="">Genre</input> <br />
+                            <input name="Select2" type="checkbox" value="Table:colors~Field:color~Order:15~SqlThread:1" checked="">Color</input> <br />
+                            <input name="Select3" type="checkbox" value="Table:book~Field:id~Order:1~SqlThread:1" checked="">Book ID<sup>*</sup></input> <br />
+                            <input name="Select4" type="checkbox" value="Table:book~Field:title~Order:2~SqlThread:1" checked="">Title</input> <br />
+                            <input name="Select5" type="checkbox" value="Table:book~Field:author~Order:3~SqlThread:1" checked="">Author</input> <br />
+                            <input name="Select6" type="checkbox" value="Table:book~Field:box~Order:111~SqlThread:1" checked="">Box Number</input> <br />
                         </div><div style="float:left;margin-right:10em;">
-                            <input name="Select8" type="checkbox" value="Table:book~Field:color~Order:8" checked="">Color<br/>
-                            <input name="Select9" type="checkbox" value="Table:book~Field:copy_count~Order:9" checked="">Number of Copies<br/>
-                            <input name="Select1" type="checkbox" value="Table:book~Field:level~Order:9.5" checked="">Level<sup></sup><br/>
-                            <input name="Select10" type="checkbox" value="Table:book~Field:box~Order:10" checked="">Box Number<br/>
-                            <sup>*</sup>ID is necessary if you wish to edit the books that match this query.
+                            <input name="Select7" type="checkbox" value="Table:book~Field:copy_count~Order:112~SqlThread:1"checked="" >Number of Copies</input> <br />
+                            <input name="Select8" type="checkbox" value="Table:book~Field:minlevel~Order:113~SqlThread:1" checked="">Minimum Level</input> <br />
+                            <input name="Select9" type="checkbox" value="Table:book~Field:maxlevel~Order:114~SqlThread:1" checked="">Maximum Level</input> <br />
+                            <input name="Select10" type="checkbox" value="Table:book~Field:word_count~Order:115~SqlThread:1" checked="">Word Count</input> <br />
+                            <input name="Select11" type="checkbox" value="Table:book~Field:keyword~Order:116~SqlThread:1" checked="">Keywords</input><br />
+                            <sup>*</sup>Book ID is necessary if you wish to edit the books that match this query.
                         </div><br clear="all"/>
                         <br/><hr/><br/>
-                        Sort by <select name="Sort1">
-                            <option value="" selected="true"/>
-                            <option value="Table:book~Field:level~Order:1">Level</option>
-                            <option value="Table:book~Field:title~Order:1">Title</option>
-                            <option value="Table:book~Field:word_count~Order:1">Word Count</option>
-                            <option value="Table:book~Field:author~Order:1">Author</option>
-                            <option value="Table:book~Field:keyword~Order:1">Keywords</option>
-                            <option value="Table:book~Field:summary~Order:1">Summary</option>
-                            <option value="Table:book~Field:color~Order:1">Color</option>
-                            <option value="Table:book~Field:copy_count~Order:1">Number of Copies</option>
-                            <option value="Table:book~Field:box~Order:1">Box Number</option>
-                        </select> <input name="Sort1" type="checkbox" value="OrderType:DESC">Desc
-                        then by <select name="Sort2">
-                            <option value="" selected="true"/>
-                            <option value="Table:book~Field:level~Order:2">Level</option>
-                            <option value="Table:book~Field:title~Order:2">Title</option>
-                            <option value="Table:book~Field:word_count~Order:2">Word Count</option>
-                            <option value="Table:book~Field:author~Order:2">Author</option>
-                            <option value="Table:book~Field:keyword~Order:2">Keywords</option>
-                            <option value="Table:book~Field:summary~Order:2">Summary</option>
-                            <option value="Table:book~Field:color~Order:2">Color</option>
-                            <option value="Table:book~Field:copy_count~Order:2">Number of Copies</option>
-                            <option value="Table:book~Field:box~Order:2">Box Number</option>
-                        </select> <input name="Sort2" type="checkbox" value="OrderType:DESC">Desc
-                        then by <select name="Sort3">
-                            <option value="" selected="true"/>
-                            <option value="Table:book~Field:level~Order:3">Level</option>
-                            <option value="Table:book~Field:title~Order:3">Title</option>
-                            <option value="Table:book~Field:word_count~Order:3">Word Count</option>
-                            <option value="Table:book~Field:author~Order:3">Author</option>
-                            <option value="Table:book~Field:keyword~Order:3">Keywords</option>
-                            <option value="Table:book~Field:summary~Order:3">Summary</option>
-                            <option value="Table:book~Field:color~Order:3">Color</option>
-                            <option value="Table:book~Field:copy_count~Order:3">Number of Copies</option>
-                            <option value="Table:book~Field:box~Order:3">Box Number</option>
-                        </select> <input name="Sort3" type="checkbox" value="OrderType:DESC">Desc
-                    </p>
+                        Sort by
+                        <select name="Sort1">
+                            <option />
+                            <option value="Table:genres~Field:name~Order:1~SqlThread:1">Genre</option>
+                            <option value="Table:colors~Field:color~Order:1~SqlThread:1">Color</option>
+                            <option value="Table:book~Field:id~Order:1~SqlThread:1">id</option>
+                            <option value="Table:book~Field:title~Order:1~SqlThread:1">Title</option>
+                            <option value="Table:book~Field:author~Order:1~SqlThread:1">Author</option>
+                            <option value="Table:book~Field:box~Order:1~SqlThread:1">Box Number</option>
+                            <option value="Table:book~Field:copy_count~Order:1~SqlThread:1">Number of Copies</option>
+                            <option value="Table:book~Field:minlevel~Order:1~SqlThread:1">Minimum Level</option>
+                            <option value="Table:book~Field:maxlevel~Order:1~SqlThread:1">Maximum Level</option>
+                            <option value="Table:book~Field:word_count~Order:1~SqlThread:1">Word Count</option>
+                            <option value="Table:book~Field:keyword~Order:1~SqlThread:1">Keywords</option>
+                        </select>
+                        <input name="Sort1" type="checkbox" value="OrderType:DESC" />Desc<br />
+                        then by
+                        <select name="Sort2">
+                            <option />
+                            <option value="Table:genres~Field:name~Order:2~SqlThread:1">Genre</option>
+                            <option value="Table:colors~Field:color~Order:2~SqlThread:1">Color</option>
+                            <option value="Table:book~Field:id~Order:2~SqlThread:1">id</option>
+                            <option value="Table:book~Field:title~Order:2~SqlThread:1">Title</option>
+                            <option value="Table:book~Field:author~Order:2~SqlThread:1">Author</option>
+                            <option value="Table:book~Field:box~Order:2~SqlThread:1">Box Number</option>
+                            <option value="Table:book~Field:copy_count~Order:2~SqlThread:1">Number of Copies</option>
+                            <option value="Table:book~Field:minlevel~Order:2~SqlThread:1">Minimum Level</option>
+                            <option value="Table:book~Field:maxlevel~Order:2~SqlThread:1">Maximum Level</option>
+                            <option value="Table:book~Field:word_count~Order:2~SqlThread:1">Word Count</option>
+                            <option value="Table:book~Field:keyword~Order:2~SqlThread:1">Keywords</option>
+                        </select>
+                        <input name="Sort2" type="checkbox" value="OrderType:DESC" />Desc<br />
+                        then by
+                        <select name="Sort3">
+                            <option />
+                            <option value="Table:genres~Field:name~Order:3~SqlThread:1">Genre</option>
+                            <option value="Table:colors~Field:color~Order:3~SqlThread:1">Color</option>
+                            <option value="Table:book~Field:id~Order:3~SqlThread:1">id</option>
+                            <option value="Table:book~Field:title~Order:3~SqlThread:1">Title</option>
+                            <option value="Table:book~Field:author~Order:3~SqlThread:1">Author</option>
+                            <option value="Table:book~Field:box~Order:3~SqlThread:1">Box Number</option>
+                            <option value="Table:book~Field:copy_count~Order:3~SqlThread:1">Number of Copies</option>
+                            <option value="Table:book~Field:minlevel~Order:3~SqlThread:1">Minimum Level</option>
+                            <option value="Table:book~Field:maxlevel~Order:3~SqlThread:1">Maximum Level</option>
+                            <option value="Table:book~Field:word_count~Order:3~SqlThread:1">Word Count</option>
+                            <option value="Table:book~Field:keyword~Order:3~SqlThread:1">Keywords</option>
+                        </select>
+                        <input name="Sort3" type="checkbox" value="OrderType:DESC" />Desc<br />
+                        <div id="main-copy">
+                            <input name="Link1" type="hidden" value="PrimaryLink:colors.id~SecondaryLink:book.color" />
+                            <input name="Link2" type="hidden" value="PrimaryLink:genres.id~SecondaryLink:book.genre" />
+                            <input name="outputFormat21" type="hidden" value="fieldname:box~nicename:Box Number~type:String" />
+                            <input name="outputFormat22" type="hidden" value="fieldname:copy_count~nicename:Number of Copies~type:Numeric" />
+                            <input name="outputFormat23" type="hidden" value="fieldname:minlevel~nicename:Minimum Level~type:Numeric" />
+                            <input name="outputFormat24" type="hidden" value="fieldname:maxlevel~nicename:Maximum Level~type:Numeric" />
+                            <input name="outputFormat25" type="hidden" value="fieldname:word_count~nicename:Word Count~type:String" />
+                            <input name="outputFormat26" type="hidden" value="fieldname:keyword~nicename:Keywords~type:String" />
+                            <input name="outputFormat27" type="hidden" value="fieldname:name~nicename:Genre~type:String" />
+                            <input name="outputFormat28" type="hidden" value="fieldname:color~nicename:Color~type:String" />
+                            <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:id~type:Numeric" />
+                            <input name="outputFormat210" type="hidden" value="fieldname:title~nicename:Title~type:String" />
+                            <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author~type:String" />
+                        </div>
+                   </p>
                 </div>
                 <h3 style="border:1px solid #6e2b32;background-image: url(images/hover_link_bg.jpg);margin:0px;padding:1em;"><a href="#" style="color:#fff;font-size:1em;">Output Format</a></h3>
                 <div style="padding:1.5em;">

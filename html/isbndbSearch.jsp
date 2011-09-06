@@ -1,11 +1,8 @@
 <%@taglib uri="/WEB-INF/tlds/mrald.tld" prefix="mrald"%>
 <%@page import="org.mitre.mrald.util.*,java.io.*,java.net.*" %>
 <%@page import="edu.fcps.hutchison.*,java.util.*" %>
-
-<%
-    // System.getProperties().put( "http.proxyHost", "gatekeeper.mitre.org" );
-    // System.getProperties().put( "http.proxyPort", "80" );
-%>
+<%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<mrald:validate />
 <%-- <mrald:validate doAdminCheck="yes" /> --%>
 <%@include file='header.html'%>
 <%-- <body onload="document.FormInsert.Insert1.focus();"> --%>
@@ -16,9 +13,10 @@
                     <input type="hidden" name="SuccessUrl" value="isbndbSearch.jsp"/>
                     <input type="hidden" name="workflow" value="Building DDL"/>
                     <input type="hidden" value="Table:book~Field:author~Order:2~Type:String" name="Insert2"/>
-                    <input type="hidden" value="Table:book~Field:color~Order:1~Type:String" name="Insert1"/>
+                    <input type="hidden" value="Table:book~Field:color~Order:1~Type:Numeric" name="Insert1"/>
                     <input type="hidden" value="Table:book~Field:keyword~Order:5~Type:String" name="Insert5"/>
-                    <input type="hidden" value="Table:book~Field:level~Order:7~Type:String" name="Insert7"/>
+                    <input type="hidden" value="Table:book~Field:minlevel~Order:7~Type:Numeric" name="Insert7"/>
+                    <input type="hidden" value="Table:book~Field:maxlevel~Order:20~Type:Numeric" name="Insert7"/>
                     <input type="hidden" value="Table:book~Field:seriesid~Order:3~Type:Numeric" name="Insert3"/>
                     <input type="hidden" value="Table:book~Field:summary~Order:6~Type:String" name="Insert6"/>
                     <input type="hidden" value="Table:book~Field:word_count~Order:4~Type:String" name="Insert4"/>
@@ -33,22 +31,16 @@
                     <tr><td>Author(s): </td><td><input name="Insert2" type="text" size="50" value="" /></td></tr>
                     <tr><td>Box number: </td><td><input name="Insert8" type="text" size="50"></td></tr>
                     <tr><td>Color: </td><td><select name="Insert1">
-                        <option>none</option>
-                        <option>Dark Blue</option>
-                        <option>Green</option>
-                        <option>Light Blue</option>
-                        <option>Lime</option>
-                        <option>Neon Red</option>
-                        <option>Orange</option>
-                        <option>Purple</option>
-                        <option>Red</option>
-                        <option>Yellow</option>
+                        <mrald:dropDownList table="genres" listColumn="name" datasource="db_hutchison.props" pkColumn="id" />
                     </select></td></tr>
                     <tr><td>Word count: </td><td><input name="Insert4" type="text" size="50" value="" /></td></tr>
                     <tr><td>Copy count: </td><td><input name="Insert9" type="text" size="50" value="1" /></td></tr>
-                    <tr><td>Level: </td><td><input name="Insert7" type="text" size="50" value="" /></td></tr>
+                    <tr><td>Min Level: </td><td><input name="Insert7" type="text" size="50" value="" id="minlevel" onchange='$("#maxlevel").val($("#minlevel").val());' /></td></tr>
+                    <tr><td>Max Level: </td><td><input name="Insert20" type="text" size="50" value="" id="maxlevel"/></td></tr>
                     <tr><td>Keywords: </td><td><input name="Insert5" type="text" size="50" value="" /></td></tr>
-                    <tr><td>Genre: </td><td><input name="Insert10" type="text" size="50" value="F" /></td></tr>
+                    <tr><td>Genre: </td><td><select name="Insert10">
+                        <mrald:dropDownList table="genres" listColumn="name" datasource="db_hutchison.props" pkColumn="id" />
+                    </select></td></tr>
                     <%--<tr>
                     <td colspan="2" align="left">
 

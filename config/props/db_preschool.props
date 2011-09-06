@@ -1,7 +1,0 @@
-DBLOGIN=jchoyt
-DBNAME=preschool
-DBPASSWORD=ou812ic
-DBSERVER=jdbc:postgresql://localhost:5432/preschool
-DBDRIVER=org.postgresql.Driver
-DBLOGFILE=mralddb.log
-SCHEMA=public

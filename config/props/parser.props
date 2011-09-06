@@ -36,3 +36,4 @@ Time=org.mitre.mrald.query.TimeElement
 Update=org.mitre.mrald.query.UpdateElement
 WfStep=org.mitre.mrald.admin.WorkflowStepElement
 CrossLink=org.mitre.mrald.formbuilder.CrossLinkElement
+BookRange=edu.fcps.hutchison.BookRangeElement

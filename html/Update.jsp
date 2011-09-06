@@ -15,7 +15,9 @@
           "will be returned and the update will fail." );
     }
 %>
-<%-- <mrald:validate /> --%>
+
+<mrald:validate doAdminCheck="yes" />
+
 <%@include file='header.html'%>
             <script language="JavaScript1.2" type="text/javascript" src="CalendarPopup.js">
             </script>

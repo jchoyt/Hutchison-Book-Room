@@ -14,7 +14,7 @@
 
     String searchTerm = WebUtils.getRequiredParameter(request, "term");
     Connection conn = new MraldConnection("db_hutchison.props").getConnection();
-    String query = "SELECT * from book where title  ~* ? or keyword  ~* ? or author  ~* ?";
+    String query = "SELECT title, author, c.color, box, word_count, copy_count, b.id from book b join colors c on (b.color = c.id) where title  ~* ? or keyword  ~* ? or author  ~* ?";
     PreparedStatement ps = conn.prepareStatement(query);
     ps.setString( 1, searchTerm  );
     ps.setString( 2, searchTerm  );
@@ -41,7 +41,7 @@
         if( adminUser )
         {
             out.write( "</td><td><a href=\"Update.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +
-                    "&SuccessUrl=index.jsp&message=Book successfully updated.\"><span class=\"ui-icon ui-icon-pencil\" style=\"padding:0px;\"></span></a>" +
+                    "&SuccessUrl=index.jsp&message=Book successfully updated.&fKey1=genre&fKeyTable1=genres&fKeyList1=name&fKeyId1=id&fKeyDataSource1=db_hutchison.props&fKey2=color&fKeyTable2=colors&fKeyList2=color&fKeyId2=id&fKeyDataSource2=db_hutchison.props\"><span class=\"ui-icon ui-icon-pencil\" style=\"padding:0px;\"></span></a>" +
                     "<a href=\"Delete.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +
                     "&SuccessUrl=index.jsp&message=Book successfully deleted.\"><span class=\"ui-icon ui-icon-close\" style=\"padding:0px;\"></span></a>");
         }
