@@ -1,5 +1,6 @@
 <%@ page import="org.mitre.mrald.util.Config" %>
 <%@ taglib uri="/WEB-INF/tlds/mrald.tld" prefix="mrald"%>
+<mrald:validate doAdminCheck="yes" />
 <html>
   <head>
     <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
