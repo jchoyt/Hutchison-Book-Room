@@ -49,6 +49,16 @@
                         </select>
                         <br/><br/>
 
+                        <%-- Filter - Genre --%>
+                        <strong>Genre</strong>
+                        <br />
+                        <input type="hidden" name="FilterCategorical2" value="Table:genres~Field:id~Operator:=~Type:" />
+                        <select name="FilterCategorical2">
+                            <option value=""></option>
+                            <mrald:dropDownList table="genres" pkColumn="id" listColumn="name" datasource="db_hutchison.props"/></select>
+                        </select>
+                        <br/><br/>
+
                         <%-- Filter - Number of copies --%>
                         <strong>Number of copies is more than</strong><input type="text" name="Filter12" size="5"/>
                         <input type="hidden" name="Filter12" value="Table:book~Field:copy_count~Operator:&gt;~Type:String"/>
@@ -65,8 +75,8 @@
                         <strong>General Filters</strong> - Select field, operator, and filter value<br/>
                         <select name="Filter3" id="Filter3List">
                         <option />
-                        <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option>
-                        <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option>
+                        <%-- <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option> --%>
+                        <%-- <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option> --%>
                         <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
                         <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
                         <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
@@ -116,8 +126,8 @@
                         <br />
                         <select name="Filter4" id="Filter4List">
                         <option />
-                        <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option>
-                        <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option>
+                        <%-- <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option> --%>
+                        <%-- <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option> --%>
                         <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
                         <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
                         <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
@@ -167,8 +177,8 @@
                         <br />
                         <select name="Filter5" id="Filter5List">
                         <option />
-                        <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option>
-                        <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option>
+                        <%-- <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option> --%>
+                        <%-- <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option> --%>
                         <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
                         <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
                         <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
