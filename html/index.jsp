@@ -24,8 +24,7 @@
                     <h3>Side "Quick Click" Links</h3>
                     <p>Descriptions of the quick links to the right.  These links (except for the logout) will open a small window over top of the current window.  This provides quick access to powerful functionality.</p>
                     <p><b><i>Global Search</i></b> - Enter a single word and the entire database will be searched for all instances of this word.  The search is case insensitive.</p>
-                    <p><b><i>Add Shelving Location</i></b> - There is a fixed set of shelving locations that can be used when entering books.  This allows the user to add a new locaction, which will automatically be added to the available lists.</p>
-                    <p><b><i>Backup Database</i></b> - This provides a text file which represents all data in the database.  This can be downloaded for safe keeping.  </p>
+                    <p><b><i>Backup Database</i></b> - This provides a text file which represents all data in the database.  This can be downloaded for safe-keeping.  Give it a minute to prepare the download.</p>
                     <p><b><i>Logout</i></b> - Logs out the current user and returns you to the login page.</p>
                 </div>
 <%@include file='footer.html'%>
