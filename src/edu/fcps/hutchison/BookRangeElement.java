@@ -72,7 +72,6 @@ public class BookRangeElement extends SqlElements implements FormBuilderElement
      * Produces the HTML for inclusion on the second step of form
      * building. The HTML returned should be self-supporting - i.e., only the
      * guts of a &lt;div&gt; or a &lt;td&gt; tag. It should not be part of a
-     * larger table structure. It is used in building the second page of the
      * form buliding process.
      *
      * @param md Description of the Parameter
@@ -186,7 +185,7 @@ public class BookRangeElement extends SqlElements implements FormBuilderElement
     public ArrayList<String> buildWhere( ArrayList<String> currentWhereList )
     {
         //Build the Where clause using items in the
-        String newValue = null;
+        String newValue = "( ";
         int noOfValues = nameValues.getValue( FormTags.VALUE_TAG ).length;
 
         if ( noOfValues == 0 )
@@ -201,21 +200,23 @@ public class BookRangeElement extends SqlElements implements FormBuilderElement
         {
             if ( !maxValue.equals( "" ) )
             {
-                newValue = minValue + " between minlevel and maxlevel or " + maxValue + " between minlevel and maxlevel";
+                newValue = newValue + minValue + " between minlevel and maxlevel or " + maxValue + " between minlevel and maxlevel";
             }
             else
             {
-                newValue = minValue + " between minlevel and maxlevel";
+                newValue = newValue + minValue + " between minlevel and maxlevel";
             }
         }
         else if ( !maxValue.equals( "" ) )
         {
-            newValue = maxValue + " between minlevel and maxlevel";
+            newValue = newValue + maxValue + " between minlevel and maxlevel";
         }
         else
         {
             return currentWhereList;
         }
+
+        newValue = newValue + " )";
 
         if ( !currentWhereList.contains( newValue ) )
         {
