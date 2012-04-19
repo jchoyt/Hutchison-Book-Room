@@ -49,7 +49,9 @@ public class LabelBuilder
 
 
 	protected String getCellValStr(HSSFCell cell) {
-		if (cell.getCellType() == HSSFCell.CELL_TYPE_BOOLEAN) {
+	    if( cell == null ) {
+            return "";
+        } else if (cell.getCellType() == HSSFCell.CELL_TYPE_BOOLEAN) {
 			return Boolean.toString(cell.getBooleanCellValue());
 		} else if (cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC) {
 			return Double.toString(cell.getNumericCellValue());
