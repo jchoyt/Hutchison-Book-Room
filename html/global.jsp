@@ -40,9 +40,9 @@
                     "</td><td>" + rs.getString("count"));
         if( adminUser )
         {
-            out.write( "</td><td><a href=\"Update.jsp?datasource=db_preschool.props&tableName=book&isbn=" + rs.getString("isbn") +
+            out.write( "</td><td><a href=\"Update.jsp?datasource=db_hutchison.props&tableName=book&isbn=" + rs.getString("isbn") +
                     "&SuccessUrl=index.jsp&message=Book successfully updated.\"><span class=\"ui-icon ui-icon-pencil\" style=\"padding:0px;\"></span></a>" +
-                    "<a href=\"Delete.jsp?datasource=db_preschool.props&tableName=book&isbn=" + rs.getString("isbn") +
+                    "<a href=\"Delete.jsp?datasource=db_hutchison.props&tableName=book&isbn=" + rs.getString("isbn") +
                     "&SuccessUrl=index.jsp&message=Book successfully deleted.\"><span class=\"ui-icon ui-icon-close\" style=\"padding:0px;\"></span></a>");
         }
         out.write("</td></tr>\n");
