@@ -3,7 +3,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ page import="org.mitre.mrald.util.*" %>
 
-<%-- <mrald:validate /> --%>
+<mrald:validate doAdminCheck="yes" />
 <%@include file='header.html'%>
 <center>
     <form method="POST" name="FormInsert" action="FormSubmit" enctype="x-www-form-urlencoded">

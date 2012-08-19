@@ -30,6 +30,7 @@
                         <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:Book ID~type:Numeric" />
                         <input name="outputFormat210" type="hidden" value="fieldname:title~nicename:Title~type:String" />
                         <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author~type:String" />
+                        <input name="outputFormat212" type="hidden" value="fieldname:series_tmp~nicename:Series~type:String" />
 
                         <%-- Filter - Range of Book Level --%>
                         <b>Range of Book Level</b>
@@ -42,7 +43,7 @@
                         <%-- Filter - Color --%>
                         <strong>Color</strong>
                         <br />
-                        <input type="hidden" name="FilterCategorical1" value="Table:book~Field:color~Operator:=~Type:" />
+                        <input type="hidden" name="FilterCategorical1" value="Table:book~Field:color~Operator:pg contains~Type:" />
                         <select name="FilterCategorical1">
                             <option value=""></option>
                             <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select>
@@ -52,7 +53,7 @@
                         <%-- Filter - Genre --%>
                         <strong>Genre</strong>
                         <br />
-                        <input type="hidden" name="FilterCategorical2" value="Table:genres~Field:id~Operator:=~Type:" />
+                        <input type="hidden" name="FilterCategorical2" value="Table:genres~Field:id~Operator:pg contains~Type:" />
                         <select name="FilterCategorical2">
                             <option value=""></option>
                             <mrald:dropDownList table="genres" pkColumn="id" listColumn="name" datasource="db_hutchison.props"/></select>
@@ -86,10 +87,11 @@
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
+                        <option value="Table:book~Field:series_tmp~Type:String~SqlThread:1">Series</option>
                         </select>
                         <select name="Filter3">
                         <option />
-                        <option value="Operator:=">=
+                        <option value="Operator:pg contains">=
                               </option>
                         <option value="Operator:!=">Not equal (!=)
                               </option>
@@ -101,7 +103,7 @@
                               </option>
                         <option value="Operator:&gt;=">&gt;=
                               </option>
-                        <option value="Operator:like">Contains
+                        <option value="Operator:pg contains">Contains
                               </option>
                         <option value="Operator:not like">Does Not Contain
                               </option>
@@ -137,10 +139,11 @@
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
+                        <option value="Table:book~Field:series_tmp~Type:String~SqlThread:1">Series</option>
                         </select>
                         <select name="Filter4">
                         <option />
-                        <option value="Operator:=">=
+                        <option value="Operator:pg contains">=
                               </option>
                         <option value="Operator:!=">Not equal (!=)
                               </option>
@@ -152,7 +155,7 @@
                               </option>
                         <option value="Operator:&gt;=">&gt;=
                               </option>
-                        <option value="Operator:like">Contains
+                        <option value="Operator:pg contains">Contains
                               </option>
                         <option value="Operator:not like">Does Not Contain
                               </option>
@@ -188,10 +191,11 @@
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
+                        <option value="Table:book~Field:series_tmp~Type:String~SqlThread:1">Series</option>
                         </select>
                         <select name="Filter5">
                         <option />
-                        <option value="Operator:=">=
+                        <option value="Operator:pg contains">=
                               </option>
                         <option value="Operator:!=">Not equal (!=)
                               </option>
@@ -203,7 +207,7 @@
                               </option>
                         <option value="Operator:&gt;=">&gt;=
                               </option>
-                        <option value="Operator:like">Contains
+                        <option value="Operator:pg contains">Contains
                               </option>
                         <option value="Operator:not like">Does Not Contain
                               </option>
@@ -238,12 +242,14 @@
                             <input name="Select4" type="checkbox" value="Table:book~Field:title~Order:2~SqlThread:1" checked="">Title</input> <br />
                             <input name="Select5" type="checkbox" value="Table:book~Field:author~Order:3~SqlThread:1" checked="">Author</input> <br />
                             <input name="Select6" type="checkbox" value="Table:book~Field:box~Order:111~SqlThread:1" checked="">Box Number</input> <br />
+                            <input name="Select12" type="checkbox" value="Table:book~Field:series_tmp~Order:117~SqlThread:1" checked="">Series</input><br />
                         </div><div style="float:left;margin-right:10em;">
                             <input name="Select7" type="checkbox" value="Table:book~Field:copy_count~Order:112~SqlThread:1"checked="" >Number of Copies</input> <br />
                             <input name="Select8" type="checkbox" value="Table:book~Field:minlevel~Order:113~SqlThread:1" checked="">Minimum Level</input> <br />
                             <input name="Select9" type="checkbox" value="Table:book~Field:maxlevel~Order:114~SqlThread:1" checked="">Maximum Level</input> <br />
                             <input name="Select10" type="checkbox" value="Table:book~Field:word_count~Order:115~SqlThread:1" checked="">Word Count</input> <br />
                             <input name="Select11" type="checkbox" value="Table:book~Field:keyword~Order:116~SqlThread:1" checked="">Keywords</input><br />
+
                             <sup>*</sup>Book ID is necessary if you wish to edit the books that match this query.
                         </div><br clear="all"/>
                         <br/><hr/><br/>
