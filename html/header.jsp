@@ -1,3 +1,8 @@
+<%@ page import="org.mitre.mrald.util.*, java.util.*" %><%
+    User user = ( User ) pageContext.getSession().getAttribute( Config.getProperty( "cookietag" ) );
+    int usertype = user == null ? 1 : user.getTypeId();
+%>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta name="generator" content="HTML Tidy, see www.w3.org" />
@@ -33,9 +38,15 @@
                         <li>
                             <a href="bookSearch.jsp">Search</a>
                         </li>
+                        <%  if (usertype == User.ADMIN_USER )
+                        {
+                        %>
                         <li>
                             <a href="isbndbSearch0.jsp">Add a New Book</a>
                         </li>
+                        <%
+                        }
+                        %>
                     </ul>
                 </div>
             </div>
@@ -45,12 +56,18 @@
                         <li>
                             <a onclick="loadPopup( 'globalLinkPopup.html' );">Global Search</a>
                         </li>
-                        <li>
-                            <a onclick="loadPopup( 'addShelfLocPopup.html' );">Add Shelving Location</a>
-                        </li>
-                        <li>
-                            <a onclick="loadPopup( 'saveDb.jsp' );">Backup Database</a>
-                        </li>
+                        <%  if (usertype == User.ADMIN_USER )
+                        {
+                        %>
+                            <li>
+                                <a onclick="loadPopup( 'addShelfLocPopup.html' );">Add Shelving Location</a>
+                            </li>
+                            <li>
+                                <a onclick="loadPopup( 'saveDb.jsp' );">Backup Database</a>
+                            </li>
+                        <%
+                        }
+                        %>
                         <li>
                             <a href="keywordReport.jsp">Keyword Report</a>
                         </li>

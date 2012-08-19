@@ -3,7 +3,7 @@
     response.setContentType( "text/csv" );
     response.setHeader( "Content-Disposition", "attachment; filename=BookRoomKeywords.csv;" );
 
-    String query = "select keyword from book";
+    String query = "select distinct keyword from book";
     MraldConnection mconn = new MraldConnection("db_hutchison.props");
     ResultSet rs = mconn.executeQuery(query);
     while(rs.next())

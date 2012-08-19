@@ -4,7 +4,7 @@
 <%@ page import="org.mitre.mrald.util.*" %>
 
 <mrald:validate doAdminCheck="yes" />
-<%@include file='header.html'%>
+<%@include file='header.jsp'%>
 <center>
     <form method="POST" name="FormInsert" action="FormSubmit" enctype="x-www-form-urlencoded">
         <input name="Schema" type="hidden" value=""/>

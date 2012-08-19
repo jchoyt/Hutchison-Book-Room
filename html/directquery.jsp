@@ -6,7 +6,7 @@ taglib prefix="tags" tagdir="/WEB-INF/tags" %><%
     query = "select ";
 %>
 <mrald:validate doAdminCheck="yes" />
-<%@include file='header.html'%>
+<%@include file='header.jsp'%>
     <script type="text/javascript" language="Javascript1.2" >
         function setProcessing()
         {

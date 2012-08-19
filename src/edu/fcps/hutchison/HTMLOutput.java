@@ -69,7 +69,14 @@ public class HTMLOutput extends OutputManager
     public @Override void printStart()
         throws IOException
     {
-        FormUtils.printFile(out, new File(Config.getProperty("BasePath"), "header.html"));
+        try
+        {
+            msg.getReq().getRequestDispatcher("haeder.jsp").include(msg.getReq(), msg.getRes());
+        }
+        catch (Exception e)
+        {
+            FormUtils.printFile(out, new File(Config.getProperty("BasePath"), "header.html"));
+        }
         out.println( "<!--\n" );
         super.printQuery();
         out.println(" -->" );

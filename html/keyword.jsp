@@ -1,6 +1,6 @@
 <%@ page import="org.mitre.mrald.util.*,java.sql.*" %>
 <mrald:validate />
-<%@include file='header.html'%>
+<%@include file='header.jsp'%>
 <%
     String searchTerm = WebUtils.getRequiredParameter(request, "term");
 %>

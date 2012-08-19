@@ -1,6 +1,6 @@
-DBLOGIN=webuser
-DBNAME=hutchison
-DBPASSWORD=sOulcu8es
-DBSERVER=jdbc:postgresql://localhost:5432/hutchison
 DBDRIVER=org.postgresql.Driver
+DBLOGIN=jchoyt
+DBNAME=preschool
+DBPASSWORD=ou812ic
+DBSERVER=jdbc:postgresql://localhost:5432/preschool
 SCHEMA=public

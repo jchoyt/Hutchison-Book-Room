@@ -1,6 +1,13 @@
 DBLOGIN=webuser
-DBNAME=hutchison
+DBNAME=preschool
 DBPASSWORD=sOulcu8es
-DBSERVER=jdbc:postgresql://localhost:5432/hutchison
+DBSERVER=jdbc:postgresql://localhost:5432/preschool
 DBDRIVER=org.postgresql.Driver
 SCHEMA=public
+
+#DBDRIVER=org.hsqldb.jdbcDriver
+#DBLOGIN=sa
+#DBPASSWORD=
+#DBSERVER=jdbc:hsqldb:file:[PATH]/WEB-INF/props/admin
+#SCHEMA=PUBLIC
+#DESCRIPTION=An internal database for maintaining MRALD user and other administrative data.  Only administrative users will see this dataset.

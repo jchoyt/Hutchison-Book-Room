@@ -14,7 +14,7 @@ Process proc = runtime.exec( command );
             BufferedReader bufferedreader = new BufferedReader(inputstreamreader);
             // check for ls failure
             // read the ls output
-            final String file = "hutchison.sql";
+            final String file = "floris_preschool.sql";
             File sqlFile = new File(Config.getProperty("LOGPATH"), file);
             sqlFile.delete();
             String line;

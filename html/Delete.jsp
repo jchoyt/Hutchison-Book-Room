@@ -16,7 +16,7 @@
     }
 %>
 <%-- <mrald:validate /> --%>
-<%@include file='header.html'%>
+<%@include file='header.jsp'%>
             <script language="JavaScript1.2" type="text/javascript" src="CalendarPopup.js">
             </script>
             <br />

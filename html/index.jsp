@@ -3,7 +3,7 @@
 <%@ page import="org.mitre.mrald.util.*" %>
 
 <mrald:validate />
-<%@include file='header.html'%>
+<%@include file='header.jsp'%>
 <%
     String message = WebUtils.getOptionalParameter( request, "message", null ); //defaults to "none"
     if( message != null )

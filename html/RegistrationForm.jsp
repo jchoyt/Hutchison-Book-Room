@@ -9,7 +9,7 @@
     if (mraldUser != null)
         userStr = mraldUser.getEmail();
 %>
-<%@include file='header.html'%>
+<%@include file='header.jsp'%>
     <script language="Javascript">
         function checkForm(form)
         {

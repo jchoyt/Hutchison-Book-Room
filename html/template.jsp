@@ -16,7 +16,7 @@
     }
 %>
 <%-- <mrald:validate /> --%>
-<%@include file='header.html'%>
+<%@include file='header.jsp'%>
             <script language="JavaScript1.2" type="text/javascript" src="CalendarPopup.js">
             </script>
             <a href="javascript:NewWindow('help/step1.html','acepopup','640','480','center','front');">Help With This Form?</a>
