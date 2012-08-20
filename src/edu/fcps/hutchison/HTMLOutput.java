@@ -71,10 +71,11 @@ public class HTMLOutput extends OutputManager
     {
         try
         {
-            msg.getReq().getRequestDispatcher("haeder.jsp").include(msg.getReq(), msg.getRes());
+            msg.getReq().getRequestDispatcher("header.jsp").include(msg.getReq(), msg.getRes());
         }
         catch (Exception e)
         {
+            MraldOutFile.logToFile( e );
             FormUtils.printFile(out, new File(Config.getProperty("BasePath"), "header.html"));
         }
         out.println( "<!--\n" );
@@ -98,7 +99,9 @@ public class HTMLOutput extends OutputManager
             FormUtils.printFile(out, new File(Config.getProperty("BasePath"), "footer.html"));
         }
         catch (IOException e)
-        {}
+        {
+            MraldOutFile.logToFile( e );
+        }
     }
 
     /**
