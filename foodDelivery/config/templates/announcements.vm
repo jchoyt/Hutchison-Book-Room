@@ -1,3 +1,0 @@
-#foreach($a in $announce)
-    <h3 class="$a.type">$a.message</h3>
-#end

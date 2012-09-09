@@ -1,3 +1,0 @@
-<span class="hp">HP: $stats.hp</span>
-<span class="ip">IP: $stats.ip</span>
-<span class="ap">AP: $stats.ap</span>

@@ -1,3 +1,0 @@
-#foreach($occ in $occs)
-    <option value="$occ.id">$occ.name</option>
-#end.

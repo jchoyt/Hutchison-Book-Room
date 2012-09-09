@@ -1,7 +1,0 @@
-#foreach($msg in $msgs)
-    <li><span class="read-$msg.read"><span class="$msg.type">
-    #if( $msg.reps > 1 )
-        ( $msg.reps times )
-    #end
-    $msg.text ( $msg.date )</span></span></li>
-#end
