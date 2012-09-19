@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <!-- HiFi News | Template created by Dieter Schneider 2006 | www.csstemplateheaven.com -->
         <title>
-            Floris UMC Preschool Library
+            Hutchison Elementary School Book Room
         </title>
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link rel="stylesheet" type="text/css" href="jquery-ui-1.7.2.custom.css" />
@@ -18,10 +18,10 @@
         <div id="container">
             <div id="header">
                 <h1>
-                    Floris UMC Preschool Library
+                    Hutchison Elementary School Book Room
                 </h1>
                 <h2>
-                    Books &amp; Love
+                    Fairfax County Public School System
                 </h2>
             </div>
             <div id="linkbar">
@@ -34,7 +34,7 @@
                             <a href="bookSearch.jsp">Search</a>
                         </li>
                         <li>
-                            <a href="isbndbSearch0.jsp">Add a New Book</a>
+                            <a href="isbndbSearch.jsp">Add a New Book</a>
                         </li>
                     </ul>
                 </div>
@@ -43,11 +43,11 @@
                 <div class="navcontainer">
                     <ul class="navlist">
                         <li>
-                            <a onclick="loadPopup( 'globalLinkPopup.html' );">Global Search</a>
+                            <a onclick="loadPopup( 'globalLinkPopup.html' );setTimeout(function() { $('#searchterm').focus();}, 500);">Global Search</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a onclick="loadPopup( 'addShelfLocPopup.html' );">Add Shelving Location</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a onclick="loadPopup( 'saveDb.jsp' );">Backup Database</a>
                         </li>
