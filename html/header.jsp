@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <!-- HiFi News | Template created by Dieter Schneider 2006 | www.csstemplateheaven.com -->
         <title>
-            Floris UMC Preschool Library
+            Hutchison Elementary School Book Room
         </title>
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link rel="stylesheet" type="text/css" href="jquery-ui-1.7.2.custom.css" />
@@ -23,10 +23,10 @@
         <div id="container">
             <div id="header">
                 <h1>
-                    Floris UMC Preschool Library
+                    Hutchison Elementary School Book Room
                 </h1>
                 <h2>
-                    Books &amp; Love
+                    Fairfax County Public School System
                 </h2>
             </div>
             <div id="linkbar">

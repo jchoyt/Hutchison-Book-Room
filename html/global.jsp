@@ -21,6 +21,7 @@
     ps.setString( 3, searchTerm  );
     ResultSet rs = ps.executeQuery();
 %>
+
     <table class="stripeMe">
         <thead style="display:fixed">
             <tr><th>Title</th><th>Author</th><th>Color</th><th>Box Number</th><th>Word Count</th><th>Reading Level</th><th>Number of Copies</th>
