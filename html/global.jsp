@@ -1,6 +1,6 @@
 <%@ page import="org.mitre.mrald.util.*,java.sql.*" %>
 <mrald:validate />
-<%@include file='header.html'%>
+<%@include file='header.jsp'%>
 <script src="jquery.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
