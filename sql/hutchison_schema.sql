@@ -1,55 +1,447 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: book; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE book (
+    id integer NOT NULL,
+    title text NOT NULL,
+    author text DEFAULT ''::text,
+    genre integer DEFAULT 1,
+    color integer,
+    box text,
+    copy_count integer,
+    minlevel integer,
+    maxlevel integer,
+    word_count text,
+    keyword text,
+    series_tmp text,
+    big_book boolean DEFAULT false
+);
+
+
+ALTER TABLE public.book OWNER TO postgres;
+
+--
+-- Name: book_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE book_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.book_id_seq OWNER TO postgres;
+
+--
+-- Name: book_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE book_id_seq OWNED BY book.id;
+
+
+--
+-- Name: book_log; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE book_log (
+    id integer NOT NULL,
+    title text NOT NULL,
+    author text DEFAULT ''::text,
+    genre integer DEFAULT 1,
+    color integer,
+    box text,
+    copy_count integer,
+    minlevel integer,
+    maxlevel integer,
+    word_count text,
+    keyword text,
+    series_tmp text,
+    modified timestamp without time zone DEFAULT now(),
+    modified_by text
+);
+
+
+ALTER TABLE public.book_log OWNER TO postgres;
+
+--
+-- Name: colors; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE colors (
+    id integer NOT NULL,
+    color text
+);
+
+
+ALTER TABLE public.colors OWNER TO postgres;
+
+--
+-- Name: colors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE colors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.colors_id_seq OWNER TO postgres;
+
+--
+-- Name: colors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE colors_id_seq OWNED BY colors.id;
+
+
+--
+-- Name: genres; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
 CREATE TABLE genres (
-    id serial,
+    id integer NOT NULL,
     code text,
     name text
 );
 
-alter table genres add constraint genres_pkey primary key (id);
 
-INSERT INTO genres ( code, name ) values ('F', 'Fiction');
-INSERT INTO genres ( code, name ) values ('NF', 'Non Fiction');
-INSERT INTO genres ( code, name ) values ('FF', 'Folklore and Fairytales');
-INSERT INTO genres ( code, name ) values ('RT', 'Reading Theatre');
+ALTER TABLE public.genres OWNER TO postgres;
 
-CREATE TABLE colors (
-    id serial,
-    color text
+--
+-- Name: genres_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE genres_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.genres_id_seq OWNER TO postgres;
+
+--
+-- Name: genres_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE genres_id_seq OWNED BY genres.id;
+
+
+--
+-- Name: graphs; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE graphs (
+    graphid integer NOT NULL,
+    userid character varying(100) NOT NULL
 );
 
-alter table colors add constraint colors_pkey primary key (id);
 
-insert into colors ( color ) values ('Dark Blue');
-insert into colors ( color ) values ('Green');
-insert into colors ( color ) values ('Light Blue');
-insert into colors ( color ) values ('Lime');
-insert into colors ( color ) values ('Neon Red');
-insert into colors ( color ) values ('Orange');
-insert into colors ( color ) values ('Purple');
-insert into colors ( color ) values ('Red');
-insert into colors ( color ) values ('Yellow');
+ALTER TABLE public.graphs OWNER TO postgres;
 
-CREATE TABLE book (
-    id serial,
-    title text NOT NULL,
-    author text DEFAULT '' NOT NULL,
-    genre int DEFAULT 1 NOT NULL,
-    color int,
-    box text NOT NULL,
-    copy_count integer,
-    minlevel int,
-    maxlevel int,
-    word_count text,
-    keyword text
+--
+-- Name: label_sql; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE label_sql (
+    table_name character varying(200) NOT NULL,
+    sql_clause character varying(2000)
 );
 
-alter table book add constraint genre_fkey foreign key (genre) references genres (id);
-alter table book add constraint color_fkey foreign key (color) references colors (id);
 
-CREATE TABLE LATTICEGROUP(LATTICEGROUPID VARCHAR(50) NOT NULL PRIMARY KEY,LATTICEGROUPNAME VARCHAR(50),LATTICEGROUPDESC VARCHAR(200),CONSTRAINT SYS_CT_46 CHECK(LATTICEGROUP.LATTICEGROUPID IS NOT NULL));
-CREATE TABLE LABEL_SQL(TABLE_NAME VARCHAR(200) NOT NULL PRIMARY KEY,SQL_CLAUSE VARCHAR(2000));
-CREATE TABLE GRAPHS(GRAPHID INTEGER NOT NULL,USERID VARCHAR(100) NOT NULL,PRIMARY KEY(GRAPHID,USERID));
-CREATE TABLE PEOPLE(EMAIL VARCHAR(100) NOT NULL PRIMARY KEY,PEOPLETYPEID INTEGER,PASSWORD VARCHAR(100),LATTICEGROUPID VARCHAR(50),FIRSTNAME VARCHAR(50),LASTNAME VARCHAR(75),COMPANY VARCHAR(100),DEPARTMENT VARCHAR(50),ADDRESS VARCHAR(300),CITY VARCHAR(50),STATE VARCHAR(50),ZIP VARCHAR(10),COUNTRY VARCHAR(50),VALIDATIONCODE VARCHAR(12),VALIDATED VARCHAR(1),CONSTRAINT SYS_FK_50 FOREIGN KEY(LATTICEGROUPID) REFERENCES LATTICEGROUP(LATTICEGROUPID),CONSTRAINT SYS_CT_51 CHECK(PEOPLE.EMAIL IS NOT NULL));
-CREATE TABLE BROADCAST_TARGETS(NAME VARCHAR(100) NOT NULL,LOCAL_DATASOURCE VARCHAR(100),REMOTE_DATASOURCE VARCHAR(100),REMOTE_URL VARCHAR(255));
-INSERT INTO LATTICEGROUP VALUES('Public','Public','All users can see the data in this COI - it is the most open, and also the most risky');
-INSERT INTO PEOPLE VALUES('admin@mitre.org',3,'XPERsFUdQRgrVI/si2Fv1ROAJ3X4BnOredragQ==','Public',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'still fake','Y');
-INSERT INTO BROADCAST_TARGETS VALUES('Local Admin','db_admin.props','db_admin.props','http://127.0.0.1:8080/saife');
+ALTER TABLE public.label_sql OWNER TO postgres;
+
+--
+-- Name: latticegroup; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE latticegroup (
+    latticegroupid character varying(50) NOT NULL,
+    latticegroupname character varying(50),
+    latticegroupdesc character varying(200),
+    CONSTRAINT latticegroup_latticegroupid_check CHECK ((latticegroupid IS NOT NULL))
+);
+
+
+ALTER TABLE public.latticegroup OWNER TO postgres;
+
+--
+-- Name: people; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE people (
+    email character varying(100) NOT NULL,
+    peopletypeid integer,
+    password character varying(100),
+    latticegroupid character varying(50),
+    firstname character varying(50),
+    lastname character varying(75),
+    company character varying(100),
+    department character varying(50),
+    address character varying(300),
+    city character varying(50),
+    state character varying(50),
+    zip character varying(10),
+    country character varying(50),
+    validationcode character varying(12),
+    validated character varying(1),
+    CONSTRAINT people_email_check CHECK ((email IS NOT NULL))
+);
+
+
+ALTER TABLE public.people OWNER TO postgres;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY book ALTER COLUMN id SET DEFAULT nextval('book_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY genres ALTER COLUMN id SET DEFAULT nextval('genres_id_seq'::regclass);
+
+
+--
+-- Name: colors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY colors
+    ADD CONSTRAINT colors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: genres_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY genres
+    ADD CONSTRAINT genres_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: graphs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY graphs
+    ADD CONSTRAINT graphs_pkey PRIMARY KEY (graphid, userid);
+
+
+--
+-- Name: label_sql_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY label_sql
+    ADD CONSTRAINT label_sql_pkey PRIMARY KEY (table_name);
+
+
+--
+-- Name: latticegroup_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY latticegroup
+    ADD CONSTRAINT latticegroup_pkey PRIMARY KEY (latticegroupid);
+
+
+--
+-- Name: people_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY people
+    ADD CONSTRAINT people_pkey PRIMARY KEY (email);
+
+
+--
+-- Name: color_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY book
+    ADD CONSTRAINT color_fkey FOREIGN KEY (color) REFERENCES colors(id);
+
+
+--
+-- Name: genre_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY book
+    ADD CONSTRAINT genre_fkey FOREIGN KEY (genre) REFERENCES genres(id);
+
+
+--
+-- Name: people_latticegroupid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY people
+    ADD CONSTRAINT people_latticegroupid_fkey FOREIGN KEY (latticegroupid) REFERENCES latticegroup(latticegroupid);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+GRANT ALL ON SCHEMA public TO webuser;
+
+
+--
+-- Name: book; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE book FROM PUBLIC;
+REVOKE ALL ON TABLE book FROM postgres;
+GRANT ALL ON TABLE book TO postgres;
+GRANT ALL ON TABLE book TO webuser;
+
+
+--
+-- Name: book_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON SEQUENCE book_id_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE book_id_seq FROM postgres;
+GRANT ALL ON SEQUENCE book_id_seq TO postgres;
+GRANT ALL ON SEQUENCE book_id_seq TO webuser;
+
+
+--
+-- Name: book_log; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE book_log FROM PUBLIC;
+REVOKE ALL ON TABLE book_log FROM postgres;
+GRANT ALL ON TABLE book_log TO postgres;
+GRANT ALL ON TABLE book_log TO webuser;
+
+
+--
+-- Name: colors; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE colors FROM PUBLIC;
+REVOKE ALL ON TABLE colors FROM postgres;
+GRANT ALL ON TABLE colors TO postgres;
+GRANT ALL ON TABLE colors TO webuser;
+
+
+--
+-- Name: colors_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON SEQUENCE colors_id_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE colors_id_seq FROM postgres;
+GRANT ALL ON SEQUENCE colors_id_seq TO postgres;
+GRANT ALL ON SEQUENCE colors_id_seq TO webuser;
+
+
+--
+-- Name: genres; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE genres FROM PUBLIC;
+REVOKE ALL ON TABLE genres FROM postgres;
+GRANT ALL ON TABLE genres TO postgres;
+GRANT ALL ON TABLE genres TO webuser;
+
+
+--
+-- Name: genres_id_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON SEQUENCE genres_id_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE genres_id_seq FROM postgres;
+GRANT ALL ON SEQUENCE genres_id_seq TO postgres;
+GRANT ALL ON SEQUENCE genres_id_seq TO webuser;
+
+
+--
+-- Name: graphs; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE graphs FROM PUBLIC;
+REVOKE ALL ON TABLE graphs FROM postgres;
+GRANT ALL ON TABLE graphs TO postgres;
+GRANT ALL ON TABLE graphs TO webuser;
+
+
+--
+-- Name: label_sql; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE label_sql FROM PUBLIC;
+REVOKE ALL ON TABLE label_sql FROM postgres;
+GRANT ALL ON TABLE label_sql TO postgres;
+GRANT ALL ON TABLE label_sql TO webuser;
+
+
+--
+-- Name: latticegroup; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE latticegroup FROM PUBLIC;
+REVOKE ALL ON TABLE latticegroup FROM postgres;
+GRANT ALL ON TABLE latticegroup TO postgres;
+GRANT ALL ON TABLE latticegroup TO webuser;
+
+
+--
+-- Name: people; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE people FROM PUBLIC;
+REVOKE ALL ON TABLE people FROM postgres;
+GRANT ALL ON TABLE people TO postgres;
+GRANT ALL ON TABLE people TO webuser;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
