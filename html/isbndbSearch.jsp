@@ -24,7 +24,7 @@
                     <input type="hidden" value="Table:book~Field:copy_count~Order:9~Type:Numeric" name="Insert9"/>
                     <input type="hidden" value="Table:book~Field:genre~Order:10~Type:String" name="Insert10"/>
                     <input type="hidden" value="Table:book~Field:title~Order:11~Type:String" name="Insert11"/>
-                    <input type="hidden" value="Table:book~Field:series_tmp~Order:21~Type:String" name="Insert21"/>
+                    <input type="hidden" value="Table:book~Field:series~Order:21~Type:String" name="Insert21"/>
                     <input name="Datasource" type="hidden" value="db_hutchison.props"/>
                     <input name="form" type="hidden" value="Insert Book"/>
                     <table>

@@ -30,7 +30,7 @@
                         <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:Book ID~type:Numeric" />
                         <input name="outputFormat210" type="hidden" value="fieldname:title~nicename:Title~type:String" />
                         <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author~type:String" />
-                        <input name="outputFormat212" type="hidden" value="fieldname:series_tmp~nicename:Series~type:String" />
+                        <input name="outputFormat212" type="hidden" value="fieldname:series~nicename:Series~type:String" />
 
                         <%-- Filter - Range of Book Level --%>
                         <b>Range of Book Level</b>
@@ -87,7 +87,7 @@
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
-                        <option value="Table:book~Field:series_tmp~Type:String~SqlThread:1">Series</option>
+                        <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
                         </select>
                         <select name="Filter3">
                         <option />
@@ -139,7 +139,7 @@
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
-                        <option value="Table:book~Field:series_tmp~Type:String~SqlThread:1">Series</option>
+                        <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
                         </select>
                         <select name="Filter4">
                         <option />
@@ -191,7 +191,7 @@
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
-                        <option value="Table:book~Field:series_tmp~Type:String~SqlThread:1">Series</option>
+                        <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
                         </select>
                         <select name="Filter5">
                         <option />
@@ -242,7 +242,7 @@
                             <input name="Select4" type="checkbox" value="Table:book~Field:title~Order:2~SqlThread:1" checked="">Title</input> <br />
                             <input name="Select5" type="checkbox" value="Table:book~Field:author~Order:3~SqlThread:1" checked="">Author</input> <br />
                             <input name="Select6" type="checkbox" value="Table:book~Field:box~Order:111~SqlThread:1" checked="">Box Number</input> <br />
-                            <input name="Select12" type="checkbox" value="Table:book~Field:series_tmp~Order:117~SqlThread:1" checked="">Series</input><br />
+                            <input name="Select12" type="checkbox" value="Table:book~Field:series~Order:117~SqlThread:1" checked="">Series</input><br />
                         </div><div style="float:left;margin-right:10em;">
                             <input name="Select7" type="checkbox" value="Table:book~Field:copy_count~Order:112~SqlThread:1"checked="" >Number of Copies</input> <br />
                             <input name="Select8" type="checkbox" value="Table:book~Field:minlevel~Order:113~SqlThread:1" checked="">Minimum Level</input> <br />

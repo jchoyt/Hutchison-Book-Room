@@ -9,14 +9,14 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -29,7 +29,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: book; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: book; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE book (
@@ -44,7 +44,7 @@ CREATE TABLE book (
     maxlevel integer,
     word_count text,
     keyword text,
-    series_tmp text,
+    series text,
     big_book boolean DEFAULT false
 );
 
@@ -73,7 +73,7 @@ ALTER SEQUENCE book_id_seq OWNED BY book.id;
 
 
 --
--- Name: book_log; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: book_log; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE book_log (
@@ -88,7 +88,7 @@ CREATE TABLE book_log (
     maxlevel integer,
     word_count text,
     keyword text,
-    series_tmp text,
+    series text,
     modified timestamp without time zone DEFAULT now(),
     modified_by text
 );
@@ -97,7 +97,7 @@ CREATE TABLE book_log (
 ALTER TABLE public.book_log OWNER TO postgres;
 
 --
--- Name: colors; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: colors; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE colors (
@@ -130,7 +130,7 @@ ALTER SEQUENCE colors_id_seq OWNED BY colors.id;
 
 
 --
--- Name: genres; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: genres; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE genres (
@@ -164,7 +164,7 @@ ALTER SEQUENCE genres_id_seq OWNED BY genres.id;
 
 
 --
--- Name: graphs; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: graphs; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE graphs (
@@ -176,7 +176,7 @@ CREATE TABLE graphs (
 ALTER TABLE public.graphs OWNER TO postgres;
 
 --
--- Name: label_sql; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: label_sql; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE label_sql (
@@ -188,7 +188,7 @@ CREATE TABLE label_sql (
 ALTER TABLE public.label_sql OWNER TO postgres;
 
 --
--- Name: latticegroup; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: latticegroup; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE latticegroup (
@@ -202,7 +202,7 @@ CREATE TABLE latticegroup (
 ALTER TABLE public.latticegroup OWNER TO postgres;
 
 --
--- Name: people; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: people; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
 --
 
 CREATE TABLE people (
@@ -249,7 +249,7 @@ ALTER TABLE ONLY genres ALTER COLUMN id SET DEFAULT nextval('genres_id_seq'::reg
 
 
 --
--- Name: colors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: colors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY colors
@@ -257,7 +257,7 @@ ALTER TABLE ONLY colors
 
 
 --
--- Name: genres_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: genres_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY genres
@@ -265,7 +265,7 @@ ALTER TABLE ONLY genres
 
 
 --
--- Name: graphs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: graphs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY graphs
@@ -273,7 +273,7 @@ ALTER TABLE ONLY graphs
 
 
 --
--- Name: label_sql_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: label_sql_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY label_sql
@@ -281,7 +281,7 @@ ALTER TABLE ONLY label_sql
 
 
 --
--- Name: latticegroup_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: latticegroup_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY latticegroup
@@ -289,7 +289,7 @@ ALTER TABLE ONLY latticegroup
 
 
 --
--- Name: people_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: people_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace:
 --
 
 ALTER TABLE ONLY people

@@ -14,11 +14,12 @@
 
     String searchTerm = WebUtils.getRequiredParameter(request, "term");
     Connection conn = new MraldConnection("db_hutchison.props").getConnection();
-    String query = "SELECT title, author, minlevel, maxlevel, c.color, box, word_count, copy_count, b.id from book b join colors c on (b.color = c.id) where title  ~* ? or keyword  ~* ? or author  ~* ?";
+    String query = "SELECT title, author, minlevel, maxlevel, c.color, box, word_count, copy_count, b.id from book b join colors c on (b.color = c.id) where title  ~* ? or keyword  ~* ? or author  ~* ? or series ~* ?";
     PreparedStatement ps = conn.prepareStatement(query);
     ps.setString( 1, searchTerm  );
     ps.setString( 2, searchTerm  );
     ps.setString( 3, searchTerm  );
+    ps.setString( 4, searchTerm  );
     ResultSet rs = ps.executeQuery();
 %>
 
