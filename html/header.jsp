@@ -38,39 +38,24 @@
                         <li>
                             <a href="bookSearch.jsp">Search</a>
                         </li>
+                        <li>
+                            <a onclick="loadPopup( 'keywordReport.jsp' );return false;" href="">Keywords</a>
+                        </li>
                         <%  if (usertype == User.ADMIN_USER )
                         {
                         %>
                         <li>
                             <a href="isbndbSearch0.jsp">Add a New Book</a>
                         </li>
+                        <%-- <li>
+                            <a onclick="loadPopup( 'addShelfLocPopup.html' );return false;" href="">Add Shelving Location</a>
+                        </li> --%>
+                        <li>
+                            <a onclick="loadPopup( 'saveDb.jsp' );return false;" href="">Backup Database</a>
+                        </li>
                         <%
                         }
                         %>
-                    </ul>
-                </div>
-            </div>
-            <div id="right">
-                <div class="navcontainer">
-                    <ul class="navlist">
-                        <li>
-                            <a onclick="loadPopup( 'globalLinkPopup.html' );">Global Search</a>
-                        </li>
-                        <%  if (usertype == User.ADMIN_USER )
-                        {
-                        %>
-                            <li>
-                                <a onclick="loadPopup( 'addShelfLocPopup.html' );">Add Shelving Location</a>
-                            </li>
-                            <li>
-                                <a onclick="loadPopup( 'saveDb.jsp' );">Backup Database</a>
-                            </li>
-                        <%
-                        }
-                        %>
-                        <li>
-                            <a href="keywordReport.jsp">Keyword Report</a>
-                        </li>
                         <li>
                             <a href="logout.jsp">Logout</a>
                         </li>

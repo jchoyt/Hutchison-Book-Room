@@ -27,10 +27,6 @@ import org.mitre.mrald.util.*;
 
 /**
  *  This HTMLOutput Class specializes the OutputManager class and formats it for easy viewing in a browser.
- *
- *@author     Brian Blake
- *@created    February 2, 2001
- *@version    1.0
  */
 
 public class HTMLOutput extends OutputManager
@@ -209,6 +205,10 @@ public class HTMLOutput extends OutputManager
                 else
                 {
                     formattedString = rs.getString( i + 1 );
+                    if( formattedString == null )
+                    {
+                        formattedString = "";
+                    }
                 }
                 out.print( "<td>" + formattedString + "</td>" );
                 try

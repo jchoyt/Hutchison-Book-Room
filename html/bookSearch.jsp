@@ -19,17 +19,16 @@
                     <p>
                         <input name="Link1" type="hidden" value="PrimaryLink:colors.id~SecondaryLink:book.color" />
                         <input name="Link2" type="hidden" value="PrimaryLink:genres.id~SecondaryLink:book.genre" />
-                        <input name="outputFormat21" type="hidden" value="fieldname:box~nicename:Box Number~type:String" />
-                        <input name="outputFormat22" type="hidden" value="fieldname:copy_count~nicename:Number of Copies~type:Numeric" />
-                        <input name="outputFormat23" type="hidden" value="fieldname:minlevel~nicename:Minimum Level~type:Numeric" />
-                        <input name="outputFormat24" type="hidden" value="fieldname:maxlevel~nicename:Maximum Level~type:Numeric" />
+                        <input name="outputFormat21" type="hidden" value="fieldname:box~nicename:Box #~type:String" />
+                        <input name="outputFormat22" type="hidden" value="fieldname:copy_count~nicename:# of Copies~type:Numeric" />
+                        <input name="outputFormat23" type="hidden" value="fieldname:minlevel~nicename:Min Level~type:Numeric" />
+                        <input name="outputFormat24" type="hidden" value="fieldname:maxlevel~nicename:Max Level~type:Numeric" />
                         <input name="outputFormat25" type="hidden" value="fieldname:word_count~nicename:Word Count~type:String" />
                         <input name="outputFormat26" type="hidden" value="fieldname:keyword~nicename:Keywords~type:String" />
                         <input name="outputFormat27" type="hidden" value="fieldname:name~nicename:Genre~type:String" />
                         <input name="outputFormat28" type="hidden" value="fieldname:color~nicename:Color~type:String" />
-                        <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:Book ID~type:Numeric" />
                         <input name="outputFormat210" type="hidden" value="fieldname:title~nicename:Title~type:String" />
-                        <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author~type:String" />
+                        <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author/Publisher~type:String" />
                         <input name="outputFormat212" type="hidden" value="fieldname:series~nicename:Series~type:String" />
 
                         <%-- Filter - Range of Book Level --%>
@@ -40,45 +39,46 @@
                         <i>maximum</i>: <input name="BookRange1~Max" type="text" size="9"  id="maxlevel"/>
                         <br/><br/>
 
-                        <%-- Filter - Color --%>
-                        <strong>Color</strong>
-                        <br />
-                        <input type="hidden" name="FilterCategorical1" value="Table:book~Field:color~Operator:pg contains~Type:" />
-                        <select name="FilterCategorical1">
-                            <option value=""></option>
-                            <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select>
-                        </select>
-                        <br/><br/>
-
                         <%-- Filter - Genre --%>
                         <strong>Genre</strong>
                         <br />
-                        <input type="hidden" name="FilterCategorical2" value="Table:genres~Field:id~Operator:pg contains~Type:" />
+                        <input type="hidden" name="FilterCategorical2" value="Table:genres~Field:id~Operator:=~Type:" />
                         <select name="FilterCategorical2">
                             <option value=""></option>
                             <mrald:dropDownList table="genres" pkColumn="id" listColumn="name" datasource="db_hutchison.props"/></select>
                         </select>
                         <br/><br/>
 
-                        <%-- Filter - Number of copies --%>
+                        <%-- Filter - Number of copies
                         <strong>Number of copies is more than</strong><input type="text" name="Filter12" size="5"/>
                         <input type="hidden" name="Filter12" value="Table:book~Field:copy_count~Operator:&gt;~Type:String"/>
-                        <br/><br/>
-                        <strong>Keyword (only one)</strong>
+                        <br/><br/>--%>
+
+                        <%-- Keyword search --%>
+                        <strong>Keyword (only one per bpx)</strong>
                         <br/>
                         <input type="text" name="Filter1" size="15"/>
                         <input type="text" name="Filter1" size="15"/>
-                        <input type="text" name="Filter1" size="15"/>
+                        <input type="text" name="Filter1" size="15"/> <a onclick="loadPopup( 'keywordReport.jsp' );">See keyword list</a>
                         <input type="hidden" name="Filter1" value="Table:book~Field:keyword~Operator:pg contains~Type:String"/>
                         <br/><br/>
 
+                        <%-- Filter - Color  --%>
+                        <strong>Color</strong>
+                        <br />
+                        <input type="hidden" name="FilterCategorical1" value="Table:book~Field:color~Operator:=~Type:" />
+                        <select name="FilterCategorical1">
+                            <option value=""></option>
+                            <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select>
+                        </select>
+                        <br/><br/>
+
                         <%-- Filter - General filters --%>
-                        <strong>General Filters</strong> - Select field, operator, and filter value<br/>
+                        <strong>Advanced Filters</strong> - Select field, operator, and filter value<br/>
                         <select name="Filter3" id="Filter3List">
                         <option />
                         <%-- <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option> --%>
                         <%-- <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option> --%>
-                        <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
                         <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
                         <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
                         <option value="Table:book~Field:box~Type:String~SqlThread:1">Box Number</option>
@@ -111,14 +111,6 @@
                               </option>
                         <option value="Operator:not starts">Does Not Start With
                               </option>
-                        <option value="Operator:IN">IN
-                              </option>
-                        <option value="Operator:NOT IN">NOT IN
-                              </option>
-                        <option value="Operator:IS NULL">IS NULL
-                              </option>
-                        <option value="Operator:IS NOT NULL">IS NOT NULL
-                              </option>
                         </select>
                         <input name="Filter3" type="text" size="22" id="Filter3ListValue" />
 
@@ -130,7 +122,6 @@
                         <option />
                         <%-- <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option> --%>
                         <%-- <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option> --%>
-                        <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
                         <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
                         <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
                         <option value="Table:book~Field:box~Type:String~SqlThread:1">Box Number</option>
@@ -163,14 +154,6 @@
                               </option>
                         <option value="Operator:not starts">Does Not Start With
                               </option>
-                        <option value="Operator:IN">IN
-                              </option>
-                        <option value="Operator:NOT IN">NOT IN
-                              </option>
-                        <option value="Operator:IS NULL">IS NULL
-                              </option>
-                        <option value="Operator:IS NOT NULL">IS NOT NULL
-                              </option>
                         </select>
                         <input name="Filter4" type="text" size="22" id="Filter4ListValue" />
 
@@ -182,7 +165,6 @@
                         <option />
                         <%-- <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option> --%>
                         <%-- <option value="Table:colors~Field:color~Type:String~SqlThread:1">Color</option> --%>
-                        <option value="Table:book~Field:id~Type:Numeric~SqlThread:1">id</option>
                         <option value="Table:book~Field:title~Type:String~SqlThread:1">Title</option>
                         <option value="Table:book~Field:author~Type:String~SqlThread:1">Author</option>
                         <option value="Table:book~Field:box~Type:String~SqlThread:1">Box Number</option>
@@ -215,14 +197,6 @@
                               </option>
                         <option value="Operator:not starts">Does Not Start With
                               </option>
-                        <option value="Operator:IN">IN
-                              </option>
-                        <option value="Operator:NOT IN">NOT IN
-                              </option>
-                        <option value="Operator:IS NULL">IS NULL
-                              </option>
-                        <option value="Operator:IS NOT NULL">IS NOT NULL
-                              </option>
                         </select>
                         <input name="Filter5" type="text" size="22" id="Filter5ListValue" />
 
@@ -238,7 +212,6 @@
                         <div style="float:left;margin-right:10em;">
                             <input name="Select1" type="checkbox" value="Table:genres~Field:name~Order:13~SqlThread:1" checked="">Genre</input> <br />
                             <input name="Select2" type="checkbox" value="Table:colors~Field:color~Order:15~SqlThread:1" checked="">Color</input> <br />
-                            <input name="Select3" type="checkbox" value="Table:book~Field:id~Order:1~SqlThread:1" checked="">Book ID<sup>*</sup></input> <br />
                             <input name="Select4" type="checkbox" value="Table:book~Field:title~Order:2~SqlThread:1" checked="">Title</input> <br />
                             <input name="Select5" type="checkbox" value="Table:book~Field:author~Order:3~SqlThread:1" checked="">Author</input> <br />
                             <input name="Select6" type="checkbox" value="Table:book~Field:box~Order:111~SqlThread:1" checked="">Box Number</input> <br />
@@ -258,7 +231,6 @@
                             <option />
                             <option value="Table:genres~Field:name~Order:1~SqlThread:1">Genre</option>
                             <option value="Table:colors~Field:color~Order:1~SqlThread:1">Color</option>
-                            <option value="Table:book~Field:id~Order:1~SqlThread:1">id</option>
                             <option value="Table:book~Field:title~Order:1~SqlThread:1">Title</option>
                             <option value="Table:book~Field:author~Order:1~SqlThread:1">Author</option>
                             <option value="Table:book~Field:box~Order:1~SqlThread:1">Box Number</option>
@@ -274,7 +246,6 @@
                             <option />
                             <option value="Table:genres~Field:name~Order:2~SqlThread:1">Genre</option>
                             <option value="Table:colors~Field:color~Order:2~SqlThread:1">Color</option>
-                            <option value="Table:book~Field:id~Order:2~SqlThread:1">id</option>
                             <option value="Table:book~Field:title~Order:2~SqlThread:1">Title</option>
                             <option value="Table:book~Field:author~Order:2~SqlThread:1">Author</option>
                             <option value="Table:book~Field:box~Order:2~SqlThread:1">Box Number</option>
@@ -290,7 +261,6 @@
                             <option />
                             <option value="Table:genres~Field:name~Order:3~SqlThread:1">Genre</option>
                             <option value="Table:colors~Field:color~Order:3~SqlThread:1">Color</option>
-                            <option value="Table:book~Field:id~Order:3~SqlThread:1">id</option>
                             <option value="Table:book~Field:title~Order:3~SqlThread:1">Title</option>
                             <option value="Table:book~Field:author~Order:3~SqlThread:1">Author</option>
                             <option value="Table:book~Field:box~Order:3~SqlThread:1">Box Number</option>
@@ -312,7 +282,6 @@
                             <input name="outputFormat26" type="hidden" value="fieldname:keyword~nicename:Keywords~type:String" />
                             <input name="outputFormat27" type="hidden" value="fieldname:name~nicename:Genre~type:String" />
                             <input name="outputFormat28" type="hidden" value="fieldname:color~nicename:Color~type:String" />
-                            <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:id~type:Numeric" />
                             <input name="outputFormat210" type="hidden" value="fieldname:title~nicename:Title~type:String" />
                             <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author~type:String" />
                         </div>
