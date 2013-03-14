@@ -139,6 +139,14 @@ public class LabelBuilder
         newWorkbook = new HSSFWorkbook();
     }
 
+    public LabelBuilder(File file) throws Exception
+    {
+        this._excelURI = file.toURI();
+        InputStream excelStream = this._excelURI.toURL().openStream();
+        this._excelWorkbook = new HSSFWorkbook(excelStream);
+        excelStream.close();
+        this.newWorkbook = new HSSFWorkbook();
+    }
 }
 
 

@@ -1,0 +1,34 @@
+<html>
+
+<head><title>Image Upload</title></head>
+
+<body style="text-align:center">
+	<form action="upload" method="post" enctype="multipart/form-data" name="productForm" id="productForm" style="width:400px;"><br><br>
+		<table width="100%" align="center" border=0 style="background-color:ffeeff;">
+			<tr>
+				<td align="center" colspan=2>&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td>Choose Spreadsheet<sup>1</sup>: </td>
+				<td>
+					<input type="file" name="file" id="file">
+				<td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input type="submit" name="Submit" value="Submit"></td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+
+		</table>
+                <sup>1</sup>The spreadsheet must have the number of books in the 6th column (column "F") and that column must contain only numbers or blanks.
+                <sup>2</sup>There should be no blank rows until after the last row of data
+                <sup>3</sup>Make sure you save the file as an Excel 2003 .xsl file, not a 2007/2010 .xslx file.
+	</form>
+</body>
+
+</html>
