@@ -1,6 +1,6 @@
 <%@ taglib uri="/WEB-INF/mrald.tld" prefix="mrald"%>
 <%@ page import="org.mitre.mrald.util.*,java.io.*,java.net.*" %>
-<%@ page import="org.florisumc.preschool.*,java.util.*,org.xml.sax.*,org.xml.sax.helpers.*" %>
+<%@ page import="java.util.*,org.xml.sax.*,org.xml.sax.helpers.*" %>
 <%
 
 String command = "/usr/bin/pg_dump hutchison";
@@ -14,7 +14,7 @@ Process proc = runtime.exec( command );
             BufferedReader bufferedreader = new BufferedReader(inputstreamreader);
             // check for ls failure
             // read the ls output
-            final String file = "floris_preschool.sql";
+            final String file = "hutchison.sql";
             File sqlFile = new File(Config.getProperty("LOGPATH"), file);
             sqlFile.delete();
             String line;
