@@ -31,7 +31,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-
+import org.mitre.mrald.util.Config;
 
 public class LabelBuilder
 {
@@ -118,8 +118,8 @@ public class LabelBuilder
             }
             rowct++;
         }
-        OutputStream os = new FileOutputStream("test.xls");
-        newWorkbook.write( os );
+        OutputStream os = new FileOutputStream(new File(Config.getProperty("BasePath"), "test.xls"));
+        this.newWorkbook.write(os);
         os.close();
 	}
 

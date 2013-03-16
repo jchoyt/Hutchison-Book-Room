@@ -53,6 +53,9 @@
                         <li>
                             <a onclick="loadPopup( 'saveDb.jsp' );return false;" href="">Backup Database</a>
                         </li>
+                        <li>
+                            <a href="upload.html">Label Generator</a>
+                        </li>
                         <%
                         }
                         %>

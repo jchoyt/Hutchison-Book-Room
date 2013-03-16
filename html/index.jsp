@@ -15,7 +15,7 @@
 %>
                 <div id="sub_left">
                     <h3>Quick Search</h3>
-                    Use the box below to enter a single word and the entire database will be searched for all instances of this word.  The search is case insensitive.<br/>
+                    Use the box below to enter a single word and the database will be searched for all instances of this word.<br/>
                     .<br/>
                     <center>
                     <form method="POST" action="global.jsp" id="global" enctype="x-www-form-urlencoded">

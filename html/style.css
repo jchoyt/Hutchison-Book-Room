@@ -34,8 +34,8 @@ body {
 	background-repeat: repeat-x;
 	height: 417px;
 	/* margin-right: 221px; */
-	padding-left: 30px;
-	padding-right: 50px;
+	padding-left: 20px;
+	padding-right: 20px;
 	padding-top: 50px;
 }
 
@@ -256,7 +256,7 @@ color: #fff;
 table {
 	border-collapse: collapse;
 	/* width: 50%; */
-	margin: 24px;
+	/* margin: 24px; */
 	font-size: 1.1em;
 }
 

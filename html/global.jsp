@@ -25,8 +25,8 @@
 
     <table class="stripeMe">
         <thead style="display:fixed">
-            <tr><th>Title</th><th>Author</th><th>Color</th><th>Box Number</th><th>Word Count</th><th>Reading Level</th><th>Number of Copies</th>
-            <% if(adminUser) out.write( "<th>Edit</th>" ); %>
+            <tr><th>Title</th><th>Author/Publisher</th><th>Color</th><th>Box Number</th><th>Word Count</th><th>GRL</th><th># of Copies</th>
+            <% if(adminUser) out.write( "<th>&nbsp; Edit &nbsp;</th>" ); %>
             </tr>
         </thead>
         <tbody>
@@ -48,9 +48,13 @@
         if( adminUser )
         {
             out.write( "</td><td><a href=\"Update.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +
-                    "&SuccessUrl=index.jsp&message=Book successfully updated.&fKey1=genre&fKeyTable1=genres&fKeyList1=name&fKeyId1=id&fKeyDataSource1=db_hutchison.props&fKey2=color&fKeyTable2=colors&fKeyList2=color&fKeyId2=id&fKeyDataSource2=db_hutchison.props\"><span class=\"ui-icon ui-icon-pencil\" style=\"padding:0px;\"></span></a>" +
+                    "&SuccessUrl=index.jsp&message=Book successfully updated.&fKey1=genre&fKeyTable1=genres&fKeyList1=name&fKeyId1=id&fKeyDataSource1=db_hutchison.props&fKey2=color&fKeyTable2=colors&fKeyList2=color&fKeyId2=id&fKeyDataSource2=db_hutchison.props\">Edit</a>" +
                     "<a href=\"Delete.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +
-                    "&SuccessUrl=index.jsp&message=Book successfully deleted.\"><span class=\"ui-icon ui-icon-close\" style=\"padding:0px;\"></span></a>");
+                    "&SuccessUrl=index.jsp&message=Book successfully deleted.\">Delete</a>");
+                    /*
+                    <span class=\"ui-icon ui-icon-pencil\" style=\"padding:0px;\"></span>
+                    <span class=\"ui-icon ui-icon-close\" style=\"padding:0px;\"></span>
+                    */
         }
         out.write("</td></tr>\n");
     }

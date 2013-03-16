@@ -2,9 +2,8 @@
 <%@page import="org.mitre.mrald.util.*,java.io.*,java.net.*" %>
 <%@page import="edu.fcps.hutchison.*,java.util.*" %>
 <%@taglib prefix="tags" tagdir="/WEB-INF/tags" %>
-<mrald:validate />
-<%-- <mrald:validate doAdminCheck="yes" /> --%>
-<%@include file='header.html'%>
+<mrald:validate doAdminCheck="yes" />
+<jsp:include page="header.jsp" />
 <%-- <body onload="document.FormInsert.Insert1.focus();"> --%>
         <center>
             <div class="floating-text" style="width:750px;margin:auto;margin-top:1em;">

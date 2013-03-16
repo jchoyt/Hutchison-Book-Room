@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@ page import="org.mitre.mrald.util.Config" %><%@ taglib uri="/WEB-INF/tlds/mrald.tld" prefix="mrald"%><mrald:validate />
-<%@include file='header.html'%>
+    <jsp:include page="header.jsp" />
         <script type="text/javascript">
               $(document).ready(function(){
                 $("#accordion").accordion();
@@ -45,7 +45,17 @@
                         <input type="hidden" name="FilterCategorical2" value="Table:genres~Field:id~Operator:=~Type:" />
                         <select name="FilterCategorical2">
                             <option value=""></option>
-                            <mrald:dropDownList table="genres" pkColumn="id" listColumn="name" datasource="db_hutchison.props"/></select>
+                            <%-- <mrald:dropDownList table="genres" pkColumn="id" listColumn="name" datasource="db_hutchison.props"/></select> --%>
+                            <option value="1">Dark Blue</option>
+                            <option value="2">Green</option>
+                            <option value="6">Orange</option>
+                            <option value="8">Red</option>
+                            <option value="9">Yellow</option>
+                            <option value="3">Light Blue</option>
+                            <option value="4">Lime</option>
+                            <option value="7">Purple</option>
+                            <option value="5">Neon Red</option>
+                            <option value="10">Black</option>
                         </select>
                         <br/><br/>
 
@@ -55,11 +65,11 @@
                         <br/><br/>--%>
 
                         <%-- Keyword search --%>
-                        <strong>Keyword (only one per bpx)</strong>
+                        <strong>Keyword (only one per box)</strong>
                         <br/>
                         <input type="text" name="Filter1" size="15"/>
                         <input type="text" name="Filter1" size="15"/>
-                        <input type="text" name="Filter1" size="15"/> <a onclick="loadPopup( 'keywordReport.jsp' );">See keyword list</a>
+                        <input type="text" name="Filter1" size="15"/> <a onclick="loadPopup( 'keywordReport.jsp' );">(<u>Keyword list</u>)</a>
                         <input type="hidden" name="Filter1" value="Table:book~Field:keyword~Operator:pg contains~Type:String"/>
                         <br/><br/>
 
@@ -74,7 +84,7 @@
                         <br/><br/>
 
                         <%-- Filter - General filters --%>
-                        <strong>Advanced Filters</strong> - Select field, operator, and filter value<br/>
+                        <strong>Advanced Search</strong><br/>
                         <select name="Filter3" id="Filter3List">
                         <option />
                         <%-- <option value="Table:genres~Field:name~Type:String~SqlThread:1">Genre</option> --%>
@@ -223,7 +233,7 @@
                             <input name="Select10" type="checkbox" value="Table:book~Field:word_count~Order:115~SqlThread:1" checked="">Word Count</input> <br />
                             <input name="Select11" type="checkbox" value="Table:book~Field:keyword~Order:116~SqlThread:1" checked="">Keywords</input><br />
 
-                            <sup>*</sup>Book ID is necessary if you wish to edit the books that match this query.
+                            <%-- <sup>*</sup>Book ID is necessary if you wish to edit the books that match this query. --%>
                         </div><br clear="all"/>
                         <br/><hr/><br/>
                         Sort by
