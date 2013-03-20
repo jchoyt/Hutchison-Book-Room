@@ -45,17 +45,7 @@
                         <input type="hidden" name="FilterCategorical2" value="Table:genres~Field:id~Operator:=~Type:" />
                         <select name="FilterCategorical2">
                             <option value=""></option>
-                            <%-- <mrald:dropDownList table="genres" pkColumn="id" listColumn="name" datasource="db_hutchison.props"/></select> --%>
-                            <option value="1">Dark Blue</option>
-                            <option value="2">Green</option>
-                            <option value="6">Orange</option>
-                            <option value="8">Red</option>
-                            <option value="9">Yellow</option>
-                            <option value="3">Light Blue</option>
-                            <option value="4">Lime</option>
-                            <option value="7">Purple</option>
-                            <option value="5">Neon Red</option>
-                            <option value="10">Black</option>
+                            <mrald:dropDownList table="genres" pkColumn="id" listColumn="name" datasource="db_hutchison.props"/></select>
                         </select>
                         <br/><br/>
 
@@ -79,7 +69,17 @@
                         <input type="hidden" name="FilterCategorical1" value="Table:book~Field:color~Operator:=~Type:" />
                         <select name="FilterCategorical1">
                             <option value=""></option>
-                            <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select>
+                            <%-- <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select> --%>
+                            <option value="1">Dark Blue</option>
+                            <option value="2">Green</option>
+                            <option value="6">Orange</option>
+                            <option value="8">Red</option>
+                            <option value="9">Yellow</option>
+                            <option value="3">Light Blue</option>
+                            <option value="4">Lime</option>
+                            <option value="7">Purple</option>
+                            <option value="5">Neon Red</option>
+                            <option value="10">Black</option>
                         </select>
                         <br/><br/>
 
