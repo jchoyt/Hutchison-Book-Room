@@ -22,6 +22,7 @@
     <body>
         <div id="container">
             <div id="header">
+                <img src="images/main_graphics.png" style="float:right;z-index: 100;position:absolute;top:0px;right:0px;"/>
                 <h1>
                     Hutchison Elementary School Book Room
                 </h1>

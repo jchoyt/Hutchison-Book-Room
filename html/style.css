@@ -198,6 +198,11 @@ border-bottom: 1px solid #eee;
 text-decoration: none;
 }
 
+#navlist
+{
+    margin-right:-250px;
+}
+
 .navcontainer a:hover
 {
 background-color: #76333A;
