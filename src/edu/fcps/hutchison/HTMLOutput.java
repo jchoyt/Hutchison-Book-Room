@@ -164,6 +164,10 @@ public class HTMLOutput extends OutputManager
         out.print("<table class=\"stripeMe\"><thead><tr>");
         for ( int p = 0; p < niceNames.length; p++ )
         {
+            if( "Book ID".equals( niceNames[p] ) )
+            {
+                continue;
+            }
         	if (niceNames[p].equals("")){
 				headerRow.append( "<th>" + funcName + "</th>" );
         	}else {
@@ -191,6 +195,11 @@ public class HTMLOutput extends OutputManager
             out.print( "<tr>" );
             for ( int i = 0; i < niceNames.length; i++ )
             {
+                if( "Book ID".equals( niceNames[i] ) )
+                {
+                    continue;
+                }
+
                 /*
                  *  Custom formatting here
                  */

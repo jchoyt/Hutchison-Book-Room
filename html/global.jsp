@@ -14,7 +14,7 @@
 
     String searchTerm = WebUtils.getRequiredParameter(request, "term");
     Connection conn = new MraldConnection("db_hutchison.props").getConnection();
-    String query = "SELECT title, author, minlevel, maxlevel, c.color, box, word_count, copy_count, b.id from book b join colors c on (b.color = c.id) where title  ~* ? or keyword  ~* ? or author  ~* ? or series ~* ?";
+    String query = "SELECT title, author, minlevel, maxlevel, c.color, box, word_count, copy_count, b.id, keyword, series, g.name as genre from book b join colors c on (b.color = c.id) join genres g on (g.id = b.genre) where title  ~* ? or keyword  ~* ? or author  ~* ? or series ~* ?";
     PreparedStatement ps = conn.prepareStatement(query);
     ps.setString( 1, searchTerm  );
     ps.setString( 2, searchTerm  );
@@ -25,7 +25,7 @@
 
     <table class="stripeMe">
         <thead style="display:fixed">
-            <tr><th>Title</th><th>Author/Publisher</th><th>Color</th><th>Box Number</th><th>Word Count</th><th>GRL</th><th># of Copies</th>
+            <tr><th>Title</th><th>Author/<br>Publisher</th><th>Genre</th><th>Color</th><th>Box #</th><th># of <br>Copies</th><th>GRL</th><th>Word <br>Count</th><th>Keywords</th><th>Series</th>
             <% if(adminUser) out.write( "<th>&nbsp; Edit &nbsp;</th>" ); %>
             </tr>
         </thead>
@@ -35,16 +35,20 @@
     {
         out.write( "<tr><td>" + rs.getString("title") +
                     "</td><td>" + rs.getString("author") +
+                    "</td><td>" + rs.getString("genre") +
                     "</td><td>" + rs.getString("color") +
+
                     "</td><td>" + rs.getString("box") +
-                    "</td><td>" + rs.getString("word_count"));
+                    "</td><td>" + rs.getString("copy_count"));
         if(rs.getInt("minlevel") == rs.getInt("maxlevel"))
-	{
-		out.write( "</td><td>" + rs.getInt("minlevel"));
-	} else {
-		out.write( "</td><td>" + rs.getInt("minlevel") + "-" + rs.getInt("maxlevel"));
-	}
-        out.write("</td><td>" + rs.getString("copy_count"));
+        {
+            out.write( "</td><td>" + rs.getInt("minlevel"));
+        } else {
+            out.write( "</td><td>" + rs.getInt("minlevel") + "-" + rs.getInt("maxlevel"));
+        }
+        out.write("</td><td>" + rs.getString("word_count") +
+                    "</td><td>" + rs.getString("keyword") +
+                    "</td><td>" + rs.getString("series") );
         if( adminUser )
         {
             out.write( "</td><td><a href=\"Update.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +
