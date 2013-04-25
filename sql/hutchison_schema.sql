@@ -43,8 +43,8 @@ CREATE TABLE book (
     minlevel integer,
     maxlevel integer,
     word_count text,
-    keyword text,
-    series text,
+    keyword text  DEFAULT ''::text,
+    series text  DEFAULT ''::text,
     big_book boolean DEFAULT false
 );
 
