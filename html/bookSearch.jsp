@@ -10,7 +10,7 @@
         <form name="form" method="POST" action="FormSubmit" enctypev="x-www-form-urlencoded">
             <input value="true" name="showQuery" type="hidden"> <input type="hidden" value="none" name="outputSize">
             <input name="Schema" type="hidden" value=""/>
-            <input name="Datasource" type="hidden" value="db_hutchison.props"/>
+            <input name="Datasource" type="hidden" value="db_preschool.props"/>
             <input name="form" type="hidden" value="Find Book"/>
             <input type="hidden" name="workflow" value="Building SQL"/>
             <div id="accordion">
@@ -23,7 +23,7 @@
                             <input type="hidden" name="FilterCategorical1" value="Table:book~Field:shelved~Operator:=~Type:String"/>
                             <select name="FilterCategorical1">
                             <option value=""/>
-                                        <mrald:dropDownList table="book" pkColumn="shelved" listColumn="shelved" datasource="db_hutchison.props"/></select>
+                                        <mrald:dropDownList table="book" pkColumn="shelved" listColumn="shelved" datasource="db_preschool.props"/></select>
                             <br/><br/>
                             <strong>Number of copies is more than</strong><input type="text" name="Filter2" size="5"/>
                             <input type="hidden" name="Filter1" value="Table:book~Field:count~Operator:&gt;~Type:Numeric"/>

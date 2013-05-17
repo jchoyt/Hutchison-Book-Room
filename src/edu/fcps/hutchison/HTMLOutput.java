@@ -225,9 +225,9 @@ public class HTMLOutput extends OutputManager
             // ENDFOR
             if( dbQuery.contains("book.id" ) && adminUser )
             {
-                out.print("<td><a href=\"Update.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +
-                    "&SuccessUrl=index.jsp&message=Book successfully updated.&fKey1=genre&fKeyTable1=genres&fKeyList1=name&fKeyId1=id&fKeyDataSource1=db_hutchison.props&fKey2=color&fKeyTable2=colors&fKeyList2=color&fKeyId2=id&fKeyDataSource2=db_hutchison.props\"><span class=\"ui-icon ui-icon-pencil\" style=\"padding:0px;\"></span></a>"+
-                    "<a href=\"Delete.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +
+                out.print("<td><a href=\"Update.jsp?datasource=db_preschool.props&tableName=book&id=" + rs.getString("id") +
+                    "&SuccessUrl=index.jsp&message=Book successfully updated.&fKey1=genre&fKeyTable1=genres&fKeyList1=name&fKeyId1=id&fKeyDataSource1=db_preschool.props&fKey2=color&fKeyTable2=colors&fKeyList2=color&fKeyId2=id&fKeyDataSource2=db_preschool.props\"><span class=\"ui-icon ui-icon-pencil\" style=\"padding:0px;\"></span></a>"+
+                    "<a href=\"Delete.jsp?datasource=db_preschool.props&tableName=book&id=" + rs.getString("id") +
                     "&SuccessUrl=index.jsp&message=Book successfully deleted.\"><span class=\"ui-icon ui-icon-close\" style=\"padding:0px;\"></span></a></td>");
             }
             out.println( "</tr>" );

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="hutchison" default="compile" basedir=".">
+<project name="preschool" default="compile" basedir=".">
     <description>Builds Preschool WAR file  </description>
 
     <target name="setProps" depends="init" description="sets the various properties - custom ones should be in build.props.">
@@ -9,15 +9,15 @@
         <property name="build" value="build" description="location to build the files to " />
         <property name="jars" value="lib" description="location of necessary jar files" />
         <property name="doc" value="doc" description="location of javadocs" />
-        <property name="warfile" value="hutchison.war" description="name of war file to build" />
-        <property name="jarfile" value="hutchison.jar" description="name of jar file to build" />
+        <property name="warfile" value="preschool.war" description="name of war file to build" />
+        <property name="jarfile" value="preschool.jar" description="name of jar file to build" />
         <property name="config" value="config" description="location of WEB-INF " />
         <property name="html" value="html" description="location of other HTML pages"/>
     	<property name="perl" value="perl" description="location of Perl code"/>
         <property name="webxml" value="${config}/web.xml" description="name of file to use as web.xml" />
         <property name="build.compiler" value="modern" />
         <property name="appBase" value="tomcat/webapps" />
-        <property name="webApp" value="hutchison" description="name of webapp to deploy as" />
+        <property name="webApp" value="preschool" description="name of webapp to deploy as" />
         <property name="testProps" value="${antfile.dir}/test.properties" />
         <property name="release" value="v0_00" />
         <!-- <echoproperties /> -->
@@ -43,18 +43,18 @@
     </target>
 
     <target name="release" depends="clean, zipSource, war, jar, zipJavadoc, clean">
-        <move file="${jarfile}" overwrite="true" tofile="hutchison_jar_${release}.jar" />
-        <move file="${warfile}" overwrite="true" tofile="hutchison_war_${release}.war" />
+        <move file="${jarfile}" overwrite="true" tofile="preschool_jar_${release}.jar" />
+        <move file="${warfile}" overwrite="true" tofile="preschool_war_${release}.war" />
     </target>
 
     <target name="zipSource" depends="setProps, clean">
-        <zip basedir="${antfile.dir}" compress="true" defaultexcludes="true" zipfile="hutchison_src_${release}.zip">
+        <zip basedir="${antfile.dir}" compress="true" defaultexcludes="true" zipfile="preschool_src_${release}.zip">
             <exclude name="tomcat"/>
         </zip>
     </target>
 
     <target name="zipJavadoc" depends="doc">
-        <zip basedir="${doc}" compress="true" defaultexcludes="true" zipfile="hutchison_api_${release}.zip"></zip>
+        <zip basedir="${doc}" compress="true" defaultexcludes="true" zipfile="preschool_api_${release}.zip"></zip>
     </target>
 
     <target name="war" depends="jar">
@@ -95,13 +95,13 @@
         <delete dir="${doc}" />
         <delete dir="${build}" />
         <delete>
-            <fileset dir="." includes="hutchison*.zip" />
+            <fileset dir="." includes="preschool*.zip" />
         </delete>
         <delete>
-            <fileset dir="." includes="hutchison*.war" />
+            <fileset dir="." includes="preschool*.war" />
         </delete>
         <delete>
-            <fileset dir="." includes="hutchison*.jar" />
+            <fileset dir="." includes="preschool*.jar" />
         </delete>
         <delete>
             <fileset dir="." includes="*.aar" />

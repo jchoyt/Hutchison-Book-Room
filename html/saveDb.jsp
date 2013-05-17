@@ -3,7 +3,7 @@
 <%@ page import="org.florisumc.preschool.*,java.util.*,org.xml.sax.*,org.xml.sax.helpers.*" %>
 <%
 
-String command = "/usr/bin/pg_dump hutchison";
+String command = "/usr/bin/pg_dump preschool";
 MraldOutFile.appendToFile( "Executing: " + command );
 Runtime runtime = Runtime.getRuntime();
 Process proc = runtime.exec( command );
@@ -34,5 +34,5 @@ catch (InterruptedException e) {
 %>
 
 <div id="newpopup" class="popup" title="Download Database Script">
-    <h3>The database has been exported - click <a href="logs/hutchison.sql" target="_blank">here</a> to download it.  The file will open in a new window.</h3>
+    <h3>The database has been exported - click <a href="logs/floris_preschool.sql" target="_blank">here</a> to download it.  The file will open in a new window.</h3>
 </div>

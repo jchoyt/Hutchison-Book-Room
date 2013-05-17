@@ -84,7 +84,7 @@
                     <input type="hidden" value="Table:book~Field:shelved~Order:8~Type:String" name="Insert8"/>
                     <input type="hidden" value="Table:book~Field:count~Order:9~Type:Numeric" name="Insert9"/>
                     <input type="hidden" value="Table:book~Field:series~Order:10~Type:String" name="Insert10"/>
-                    <input name="Datasource" type="hidden" value="db_hutchison.props"/>
+                    <input name="Datasource" type="hidden" value="db_preschool.props"/>
                     <input name="form" type="hidden" value="Insert Book"/>
                     <table><tr><td><font color="#FF0000">*</font>ISBN: </td><td><input name="Insert1" type="text" size="50" value="" /></td></tr>
                     <tr><td><font color="#FF0000">*</font>Title: </td><td><input name="Insert4" type="text" size="50" value="" /></td></tr>
@@ -93,7 +93,7 @@
                     <tr><td>Author(s): </td><td><input name="Insert2" type="text" size="50" value="" /></td></tr>
                     <tr><td>Publisher: </td><td><input name="Insert7" type="text" size="50" value="" /></td></tr>
                     <tr><td>Keywords: </td><td><input name="Insert5" type="text" size="75" value="" /></td></tr>
-                    <tr><td>Shelving Location: </td><td><select name="Insert8"><mrald:dropDownList datasource="db_hutchison.props" table="shelved" listColumn="shelved" pkColumn="shelved"/></select></td></tr>
+                    <tr><td>Shelving Location: </td><td><select name="Insert8"><mrald:dropDownList datasource="db_preschool.props" table="shelved" listColumn="shelved" pkColumn="shelved"/></select></td></tr>
                     <tr><td>Summary: </td><td><textarea name="Insert6" cols="75" rows="10"></textarea></td></tr>
                     <tr>
                     <td colspan="2" align="left">
@@ -116,7 +116,7 @@
                 for(Book book : books ){%>
                 <div class="floating-text" style="width:750px;margin:auto;margin-top:1em;">
                     <form method="POST" name="FormInsert" action="FormSubmit" enctype="x-www-form-urlencoded">
-                        <input name="Datasource" type="hidden" value="db_hutchison.props"/>
+                        <input name="Datasource" type="hidden" value="db_preschool.props"/>
                         <input name="form" type="hidden" value="Insert Book"/>
                         <input type="hidden" name="FailureUrl" value="failedInsert.jsp"/>
                         <input type="hidden" name="SuccessUrl" value="isbndbSearch0.jsp"/>
@@ -138,7 +138,7 @@
                         <tr><td>Author(s): </td><td><input name="Insert2" type="text" size="50" value="<%=book.getAuthorText()%>" /></td></tr>
                         <tr><td>Publisher: </td><td><input name="Insert7" type="text" size="50" value="<%=book.getPublisher()%>" /></td></tr>
                         <tr><td>Keywords: </td><td><input name="Insert5" type="text" size="75" value="" /></td></tr>
-                        <tr><td>Shelving Location: </td><td><select name="Insert8"><mrald:dropDownList datasource="db_hutchison.props" table="shelved" listColumn="shelved" pkColumn="shelved"/></select></td></tr>
+                        <tr><td>Shelving Location: </td><td><select name="Insert8"><mrald:dropDownList datasource="db_preschool.props" table="shelved" listColumn="shelved" pkColumn="shelved"/></select></td></tr>
                         <tr><td>Summary: </td><td><textarea name="Insert6" cols="75" rows="10"><%=book.getSummary()%></textarea></td></tr>
                         <tr>
                         <td colspan="2" align="left">
