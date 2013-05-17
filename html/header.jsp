@@ -68,9 +68,9 @@
                         <%
                         }
                         %>
-                        <li>
+<%--                         <li>
                             <a href="keywordReport.jsp">Keyword Report</a>
-                        </li>
+                        </li> --%>
                         <li>
                             <a href="logout.jsp">Logout</a>
                         </li>
