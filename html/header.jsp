@@ -46,7 +46,7 @@
                         {
                         %>
                         <li>
-                            <a href="isbndbSearch0.jsp">Add a New Book</a>
+                            <a href="isbndbSearch.jsp">Add a New Book</a>
                         </li>
                         <%-- <li>
                             <a onclick="loadPopup( 'addShelfLocPopup.html' );return false;" href="">Add Shelving Location</a>
