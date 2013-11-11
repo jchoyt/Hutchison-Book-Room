@@ -24,6 +24,7 @@
                     <input type="hidden" value="Table:book~Field:genre~Order:10~Type:String" name="Insert10"/>
                     <input type="hidden" value="Table:book~Field:title~Order:11~Type:String" name="Insert11"/>
                     <input type="hidden" value="Table:book~Field:series~Order:21~Type:String" name="Insert21"/>
+                    <input type="hidden" value="Table:book~Field:notes~Order:22~Type:String" name="Insert22"/>
                     <input name="Datasource" type="hidden" value="db_hutchison.props"/>
                     <input name="form" type="hidden" value="Insert Book"/>
                     <table>
@@ -42,6 +43,7 @@
                         <mrald:dropDownList table="genres" listColumn="name" datasource="db_hutchison.props" pkColumn="id" />
                     </select></td></tr>
                     <tr><td>Series: </td><td><input name="Insert21" type="text" size="50" value="" /></td></tr>
+                    <tr><td>Notes: </td><td><input name="Insert22" type="text" size="50" value="" /></td></tr>
                     <%--<tr>
                     <td colspan="2" align="left">
 

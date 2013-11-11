@@ -14,7 +14,7 @@
 
     String searchTerm = WebUtils.getRequiredParameter(request, "term");
     Connection conn = new MraldConnection("db_hutchison.props").getConnection();
-    String query = "SELECT title, author, minlevel, maxlevel, c.color, box, word_count, copy_count, b.id, keyword, series, g.name as genre from book b join colors c on (b.color = c.id) join genres g on (g.id = b.genre) where title  ~* ? or keyword  ~* ? or author  ~* ? or series ~* ?";
+    String query = "SELECT title, author, minlevel, maxlevel, c.color, box, word_count, copy_count, b.id, keyword, series, g.name as genre, notes from book b join colors c on (b.color = c.id) join genres g on (g.id = b.genre) where title  ~* ? or keyword  ~* ? or author  ~* ? or series ~* ?";
     PreparedStatement ps = conn.prepareStatement(query);
     ps.setString( 1, searchTerm  );
     ps.setString( 2, searchTerm  );
@@ -26,7 +26,7 @@
     <table class="stripeMe">
         <thead style="display:fixed">
             <tr><th>Title</th><th>Author/<br>Publisher</th><th>Genre</th><th>Color</th><th>Box #</th><th># of <br>Copies</th><th>GRL</th><th>Word <br>Count</th><th>Keywords</th><th>Series</th>
-            <% if(adminUser) out.write( "<th>&nbsp; Edit &nbsp;</th>" ); %>
+            <% if(adminUser) out.write( "<th>Notes</th><th>&nbsp; Edit &nbsp;</th>" ); %>
             </tr>
         </thead>
         <tbody>
@@ -51,6 +51,7 @@
                     "</td><td>" + rs.getString("series") );
         if( adminUser )
         {
+            out.write( "</td><td>" + rs.getString("notes"));
             out.write( "</td><td><a href=\"Update.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +
                     "&SuccessUrl=index.jsp&message=Book successfully updated.&fKey1=genre&fKeyTable1=genres&fKeyList1=name&fKeyId1=id&fKeyDataSource1=db_hutchison.props&fKey2=color&fKeyTable2=colors&fKeyList2=color&fKeyId2=id&fKeyDataSource2=db_hutchison.props\">Edit</a>" +
                     "<a href=\"Delete.jsp?datasource=db_hutchison.props&tableName=book&id=" + rs.getString("id") +

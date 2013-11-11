@@ -1,5 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<%@ page import="org.mitre.mrald.util.Config" %><%@ taglib uri="/WEB-INF/tlds/mrald.tld" prefix="mrald"%><mrald:validate />
+<%@ page import="org.mitre.mrald.util.*" %><%@ taglib uri="/WEB-INF/tlds/mrald.tld" prefix="mrald"%><mrald:validate />
+<%
+    User user = ( User ) pageContext.getSession().getAttribute( Config.getProperty( "cookietag" ) );
+    int usertype = user == null ? 1 : user.getTypeId();
+%>
     <jsp:include page="header.jsp" />
         <script type="text/javascript">
               $(document).ready(function(){
@@ -31,6 +35,8 @@
                         <input name="outputFormat211" type="hidden" value="fieldname:author~nicename:Author/<br>Publisher~type:String" />
                         <input name="outputFormat212" type="hidden" value="fieldname:series~nicename:Series~type:String" />
                         <input name="outputFormat29" type="hidden" value="fieldname:id~nicename:Book ID~type:Numeric" />
+                        <input name="outputFormat30" type="hidden" value="fieldname:notes~nicename:Notes~type:String" />
+
 
                         <%-- Filter - Range of Book Level --%>
                         <b>Range of Book Level</b>
@@ -99,6 +105,9 @@
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
                         <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
+                        <% if( usertype == User.ADMIN_USER ){ %>
+                            <option value="Table:book~Field:notes~Type:String~SqlThread:1">Notes</option>
+                        <% } %>
                         </select>
                         <select name="Filter3">
                         <option />
@@ -138,6 +147,9 @@
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
                         <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
+                        <% if( usertype == User.ADMIN_USER ){ %>
+                            <option value="Table:book~Field:notes~Type:String~SqlThread:1">Notes</option>
+                        <% } %>
                         </select>
                         <select name="Filter4">
                         <option />
@@ -176,6 +188,9 @@
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
                         <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
+                        <% if( usertype == User.ADMIN_USER ){ %>
+                            <option value="Table:book~Field:notes~Type:String~SqlThread:1">Notes</option>
+                        <% } %>
                         </select>
                         <select name="Filter5">
                         <option />
@@ -222,6 +237,8 @@
                             <input name="Select10" type="checkbox" value="Table:book~Field:word_count~Order:115~SqlThread:1" checked="">Word Count</input> <br />
                             <input name="Select11" type="checkbox" value="Table:book~Field:keyword~Order:116~SqlThread:1" checked="">Keywords</input><br />
 
+                        <input name="Select13" type="hidden" value="Table:book~Field:notes~Order:118~SqlThread:1" checked="">Keywords</input>
+
                             <%-- <sup>*</sup>Book ID is necessary if you wish to edit the books that match this query. --%>
                         </div><br clear="all"/>
                         <br/><hr/><br/>
@@ -265,7 +282,7 @@
                             <option value="Table:book~Field:box~Order:3~SqlThread:1">Box Number</option>
                             <option value="Table:book~Field:copy_count~Order:3~SqlThread:1">Number of Copies</option>
                             <option value="Table:book~Field:minlevel~Order:3~SqlThread:1">Minimum Level</option>
-                            <option value="Table:book~Field:maxlevel~Order:3~SqlThread:1">Maximum Level<SSe/option>
+                            <option value="Table:book~Field:maxlevel~Order:3~SqlThread:1">Maximum Level</option>
                             <option value="Table:book~Field:word_count~Order:3~SqlThread:1">Word Count</option>
                             <option value="Table:book~Field:keyword~Order:3~SqlThread:1">Keywords</option>
                         </select>
