@@ -214,10 +214,10 @@ public class HTMLOutput extends OutputManager
                 else
                 {
                     formattedString = rs.getString( i + 1 );
-                    if( formattedString == null )
-                    {
-                        formattedString = "";
-                    }
+                }
+                if( formattedString == null || "null".equals(formattedString) )
+                {
+                    formattedString = "";
                 }
                 out.print( "<td>" + formattedString + "</td>" );
                 try

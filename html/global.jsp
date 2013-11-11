@@ -40,9 +40,16 @@
 
                     "</td><td>" + rs.getString("box") +
                     "</td><td>" + rs.getString("copy_count"));
-        if(rs.getInt("minlevel") == rs.getInt("maxlevel"))
+        int minL = rs.getInt("minlevel");
+        int maxL = rs.getInt("maxlevel");
+        if( minL == maxL)
         {
-            out.write( "</td><td>" + rs.getInt("minlevel"));
+            if( minL == 0 )
+            {
+                out.write( "</td><td>" );
+            }
+            else out.write( "</td><td>" + rs.getInt("minlevel"));
+
         } else {
             out.write( "</td><td>" + rs.getInt("minlevel") + "-" + rs.getInt("maxlevel"));
         }

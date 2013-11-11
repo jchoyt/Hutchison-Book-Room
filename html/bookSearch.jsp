@@ -77,6 +77,7 @@
                         <select name="FilterCategorical1">
                             <option value=""></option>
                             <%-- <mrald:dropDownList table="colors" pkColumn="id" listColumn="color" datasource="db_hutchison.props"/></select> --%>
+                            <option value="11">Big Book</option>
                             <option value="1">Dark Blue</option>
                             <option value="2">Green</option>
                             <option value="6">Orange</option>
