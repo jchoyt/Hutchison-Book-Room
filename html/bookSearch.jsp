@@ -28,6 +28,7 @@
                         <input name="outputFormat23" type="hidden" value="fieldname:minlevel~nicename:Min GRL~type:Numeric" />
                         <input name="outputFormat24" type="hidden" value="fieldname:maxlevel~nicename:Max GRL~type:Numeric" />
                         <input name="outputFormat25" type="hidden" value="fieldname:word_count~nicename:Word <br>Count~type:String" />
+                        <input name="outputFormat31" type="hidden" value="fieldname:sol~nicename:SOL~type:String" />
                         <input name="outputFormat26" type="hidden" value="fieldname:keyword~nicename:Keywords~type:String" />
                         <input name="outputFormat27" type="hidden" value="fieldname:name~nicename:Genre~type:String" />
                         <input name="outputFormat28" type="hidden" value="fieldname:color~nicename:Color~type:String" />
@@ -104,6 +105,7 @@
                         <option value="Table:book~Field:minlevel~Type:Numeric~SqlThread:1">Minimum Level</option>
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
+                        <option value="Table:book~Field:sol~Type:String~SqlThread:1">SOL</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
                         <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
                         <% if( usertype == User.ADMIN_USER ){ %>
@@ -146,6 +148,7 @@
                         <option value="Table:book~Field:minlevel~Type:Numeric~SqlThread:1">Minimum Level</option>
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
+                        <option value="Table:book~Field:sol~Type:String~SqlThread:1">SOL</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
                         <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
                         <% if( usertype == User.ADMIN_USER ){ %>
@@ -187,6 +190,7 @@
                         <option value="Table:book~Field:minlevel~Type:Numeric~SqlThread:1">Minimum Level</option>
                         <option value="Table:book~Field:maxlevel~Type:Numeric~SqlThread:1">Maximum Level</option>
                         <option value="Table:book~Field:word_count~Type:String~SqlThread:1">Word Count</option>
+                        <option value="Table:book~Field:sol~Type:String~SqlThread:1">SOL</option>
                         <option value="Table:book~Field:keyword~Type:String~SqlThread:1">Keywords</option>
                         <option value="Table:book~Field:series~Type:String~SqlThread:1">Series</option>
                         <% if( usertype == User.ADMIN_USER ){ %>
@@ -230,15 +234,16 @@
                             <input name="Select4" type="checkbox" value="Table:book~Field:title~Order:2~SqlThread:1" checked="">Title</input> <br />
                             <input name="Select5" type="checkbox" value="Table:book~Field:author~Order:3~SqlThread:1" checked="">Author</input> <br />
                             <input name="Select6" type="checkbox" value="Table:book~Field:box~Order:111~SqlThread:1" checked="">Box Number</input> <br />
-                            <input name="Select12" type="checkbox" value="Table:book~Field:series~Order:117~SqlThread:1" checked="">Series</input><br />
+                            <input name="Select12" type="checkbox" value="Table:book~Field:series~Order:118~SqlThread:1" checked="">Series</input><br />
                         </div><div style="float:left;margin-right:10em;">
                             <input name="Select7" type="checkbox" value="Table:book~Field:copy_count~Order:112~SqlThread:1"checked="" >Number of Copies</input> <br />
                             <input name="Select8" type="checkbox" value="Table:book~Field:minlevel~Order:113~SqlThread:1" checked="">Minimum Level</input> <br />
                             <input name="Select9" type="checkbox" value="Table:book~Field:maxlevel~Order:114~SqlThread:1" checked="">Maximum Level</input> <br />
                             <input name="Select10" type="checkbox" value="Table:book~Field:word_count~Order:115~SqlThread:1" checked="">Word Count</input> <br />
-                            <input name="Select11" type="checkbox" value="Table:book~Field:keyword~Order:116~SqlThread:1" checked="">Keywords</input><br />
+                            <input name="Select11" type="checkbox" value="Table:book~Field:sol~Order:116~SqlThread:1" checked="">SOL</input><br />
+                            <input name="Select11" type="checkbox" value="Table:book~Field:keyword~Order:117~SqlThread:1" checked="">Keywords</input><br />
 
-                        <input name="Select13" type="hidden" value="Table:book~Field:notes~Order:118~SqlThread:1" checked="">Keywords</input>
+                        <input name="Select13" type="hidden" value="Table:book~Field:notes~Order:119~SqlThread:1" checked="">Keywords</input>
 
                             <%-- <sup>*</sup>Book ID is necessary if you wish to edit the books that match this query. --%>
                         </div><br clear="all"/>
@@ -255,6 +260,7 @@
                             <option value="Table:book~Field:minlevel~Order:1~SqlThread:1">Minimum Level</option>
                             <option value="Table:book~Field:maxlevel~Order:1~SqlThread:1">Maximum Level</option>
                             <option value="Table:book~Field:word_count~Order:1~SqlThread:1">Word Count</option>
+                            <option value="Table:book~Field:sol~Order:1~SqlThread:1">SOL</option>
                             <option value="Table:book~Field:keyword~Order:1~SqlThread:1">Keywords</option>
                         </select>
                         <input name="Sort1" type="checkbox" value="OrderType:DESC" />Desc<br />
@@ -270,6 +276,7 @@
                             <option value="Table:book~Field:minlevel~Order:2~SqlThread:1">Minimum Level</option>
                             <option value="Table:book~Field:maxlevel~Order:2~SqlThread:1">Maximum Level</option>
                             <option value="Table:book~Field:word_count~Order:2~SqlThread:1">Word Count</option>
+                            <option value="Table:book~Field:sol~Order:2~SqlThread:1">SOL</option>
                             <option value="Table:book~Field:keyword~Order:2~SqlThread:1">Keywords</option>
                         </select>
                         <input name="Sort2" type="checkbox" value="OrderType:DESC" />Desc<br />
@@ -285,6 +292,7 @@
                             <option value="Table:book~Field:minlevel~Order:3~SqlThread:1">Minimum Level</option>
                             <option value="Table:book~Field:maxlevel~Order:3~SqlThread:1">Maximum Level</option>
                             <option value="Table:book~Field:word_count~Order:3~SqlThread:1">Word Count</option>
+                            <option value="Table:book~Field:sol~Order:3~SqlThread:1">SOL</option>
                             <option value="Table:book~Field:keyword~Order:3~SqlThread:1">Keywords</option>
                         </select>
                         <input name="Sort3" type="checkbox" value="OrderType:DESC" />Desc<br />
@@ -298,6 +306,7 @@
                             <option value="Table:book~Field:minlevel~Order:3~SqlThread:1">Minimum Level</option>
                             <option value="Table:book~Field:maxlevel~Order:3~SqlThread:1">Maximum Level</option>
                             <option value="Table:book~Field:word_count~Order:3~SqlThread:1">Word Count</option>
+                            <option value="Table:book~Field:sol~Order:4~SqlThread:1">SOL</option>
                             <option value="Table:book~Field:keyword~Order:3~SqlThread:1">Keywords</option>
                         </div>
                    </p>

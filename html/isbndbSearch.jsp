@@ -16,6 +16,7 @@
                     <input type="hidden" value="Table:book~Field:keyword~Order:5~Type:String" name="Insert5"/>
                     <input type="hidden" value="Table:book~Field:minlevel~Order:7~Type:Numeric" name="Insert7"/>
                     <input type="hidden" value="Table:book~Field:maxlevel~Order:20~Type:Numeric" name="Insert20"/>
+                    <input type="hidden" value="Table:book~Field:sol~Order:23~Type:String" name="Insert23"/>
                     <input type="hidden" value="Table:book~Field:seriesid~Order:3~Type:Numeric" name="Insert3"/>
                     <input type="hidden" value="Table:book~Field:summary~Order:6~Type:String" name="Insert6"/>
                     <input type="hidden" value="Table:book~Field:word_count~Order:4~Type:String" name="Insert4"/>
@@ -42,6 +43,7 @@
                     <tr><td>Genre: </td><td><select name="Insert10">
                         <mrald:dropDownList table="genres" listColumn="name" datasource="db_hutchison.props" pkColumn="id" />
                     </select></td></tr>
+                    <tr><td>SOL: </td><td><input name="Insert23" type="text" size="50" value="" /></td></tr>
                     <tr><td>Series: </td><td><input name="Insert21" type="text" size="50" value="" /></td></tr>
                     <tr><td>Notes: </td><td><input name="Insert22" type="text" size="50" value="" /></td></tr>
                     <%--<tr>

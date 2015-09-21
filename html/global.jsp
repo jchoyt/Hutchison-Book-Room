@@ -14,7 +14,7 @@
 
     String searchTerm = WebUtils.getRequiredParameter(request, "term");
     Connection conn = new MraldConnection("db_hutchison.props").getConnection();
-    String query = "SELECT title, author, minlevel, maxlevel, c.color, box, word_count, copy_count, b.id, keyword, series, g.name as genre, notes from book b join colors c on (b.color = c.id) join genres g on (g.id = b.genre) where title  ~* ? or keyword  ~* ? or author  ~* ? or series ~* ?";
+    String query = "SELECT title, author, minlevel, maxlevel, c.color, box, word_count, copy_count, b.id, b.sol, keyword, series, g.name as genre, notes from book b join colors c on (b.color = c.id) join genres g on (g.id = b.genre) where title  ~* ? or keyword  ~* ? or author  ~* ? or series ~* ?";
     PreparedStatement ps = conn.prepareStatement(query);
     ps.setString( 1, searchTerm  );
     ps.setString( 2, searchTerm  );
@@ -25,7 +25,7 @@
 
     <table class="stripeMe">
         <thead style="display:fixed">
-            <tr><th>Title</th><th>Author/<br>Publisher</th><th>Genre</th><th>Color</th><th>Box #</th><th># of <br>Copies</th><th>GRL</th><th>Word <br>Count</th><th>Keywords</th><th>Series</th>
+            <tr><th>Title</th><th>Author/<br>Publisher</th><th>Genre</th><th>Color</th><th>Box #</th><th># of <br>Copies</th><th>GRL</th><th>Word <br>Count</th><th>SOL</th><th>Keywords</th><th>Series</th>
             <% if(adminUser) out.write( "<th>Notes</th><th>&nbsp; Edit &nbsp;</th>" ); %>
             </tr>
         </thead>
@@ -54,6 +54,7 @@
             out.write( "</td><td>" + rs.getInt("minlevel") + "-" + rs.getInt("maxlevel"));
         }
         out.write("</td><td>" + rs.getString("word_count") +
+                    "</td><td>" + rs.getString("sol") +
                     "</td><td>" + rs.getString("keyword") +
                     "</td><td>" + rs.getString("series") );
         if( adminUser )
