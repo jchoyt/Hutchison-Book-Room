@@ -1,0 +1,6 @@
+#connecting to the AWS instance
+ssh -i hutchisonBookRoom.pem  ec2-user@ec2-54-165-94-45.compute-1.amazonaws.com
+#sending files
+scp -i hutchisonBookRoom.pem hutchison_2015-03-24.sql ec2-user@54.165.94.45:~
+
+
