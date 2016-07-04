@@ -22,7 +22,6 @@ import java.sql.SQLException;
 import org.mitre.mrald.output.*;
 import javax.servlet.ServletException;
 
-import org.mitre.mrald.query.BroadcastQueryTarget;
 import org.mitre.mrald.util.*;
 
 /**
@@ -43,13 +42,6 @@ public class HTMLOutput extends OutputManager
         super();
     }
 
-
-    public @Override void printNewResultHeader(BroadcastQueryTarget t)
-    {
-        out.println("<br/><br/><span style=\"font-size:1.5em;font-weight:bold;text-align:center;\">Data from datasource " + t.getName() +
-            " located at " + t.getUrl()   );
-        out.println("</span><br/><br/>");
-    }
 
 
     /**
