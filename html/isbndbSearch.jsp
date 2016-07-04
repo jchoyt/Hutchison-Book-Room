@@ -11,21 +11,21 @@
                     <input type="hidden" name="FailureUrl" value="failedInsert.jsp"/>
                     <input type="hidden" name="SuccessUrl" value="isbndbSearch.jsp"/>
                     <input type="hidden" name="workflow" value="Building DDL"/>
-                    <input type="hidden" value="Table:book~Field:author~Order:2~Type:String" name="Insert2"/>
-                    <input type="hidden" value="Table:book~Field:color~Order:1~Type:Numeric" name="Insert1"/>
-                    <input type="hidden" value="Table:book~Field:keyword~Order:5~Type:String" name="Insert5"/>
-                    <input type="hidden" value="Table:book~Field:minlevel~Order:7~Type:Numeric" name="Insert7"/>
-                    <input type="hidden" value="Table:book~Field:maxlevel~Order:20~Type:Numeric" name="Insert20"/>
-                    <input type="hidden" value="Table:book~Field:sol~Order:23~Type:String" name="Insert23"/>
-                    <input type="hidden" value="Table:book~Field:seriesid~Order:3~Type:Numeric" name="Insert3"/>
-                    <input type="hidden" value="Table:book~Field:summary~Order:6~Type:String" name="Insert6"/>
-                    <input type="hidden" value="Table:book~Field:word_count~Order:4~Type:String" name="Insert4"/>
-                    <input type="hidden" value="Table:book~Field:box~Order:8~Type:String" name="Insert8"/>
-                    <input type="hidden" value="Table:book~Field:copy_count~Order:9~Type:Numeric" name="Insert9"/>
-                    <input type="hidden" value="Table:book~Field:genre~Order:10~Type:String" name="Insert10"/>
-                    <input type="hidden" value="Table:book~Field:title~Order:11~Type:String" name="Insert11"/>
-                    <input type="hidden" value="Table:book~Field:series~Order:21~Type:String" name="Insert21"/>
-                    <input type="hidden" value="Table:book~Field:notes~Order:22~Type:String" name="Insert22"/>
+                    <input type="hidden" value="Table::book~Field::author~Order::2~Type::String" name="Insert2"/>
+                    <input type="hidden" value="Table::book~Field::color~Order::1~Type::Numeric" name="Insert1"/>
+                    <input type="hidden" value="Table::book~Field::keyword~Order::5~Type::String" name="Insert5"/>
+                    <input type="hidden" value="Table::book~Field::minlevel~Order::7~Type::Numeric" name="Insert7"/>
+                    <input type="hidden" value="Table::book~Field::maxlevel~Order::20~Type::Numeric" name="Insert20"/>
+                    <input type="hidden" value="Table::book~Field::sol~Order::23~Type::String" name="Insert23"/>
+                    <input type="hidden" value="Table::book~Field::seriesid~Order::3~Type::Numeric" name="Insert3"/>
+                    <input type="hidden" value="Table::book~Field::summary~Order::6~Type::String" name="Insert6"/>
+                    <input type="hidden" value="Table::book~Field::word_count~Order::4~Type::String" name="Insert4"/>
+                    <input type="hidden" value="Table::book~Field::box~Order::8~Type::String" name="Insert8"/>
+                    <input type="hidden" value="Table::book~Field::copy_count~Order::9~Type::Numeric" name="Insert9"/>
+                    <input type="hidden" value="Table::book~Field::genre~Order::10~Type::String" name="Insert10"/>
+                    <input type="hidden" value="Table::book~Field::title~Order::11~Type::String" name="Insert11"/>
+                    <input type="hidden" value="Table::book~Field::series~Order::21~Type::String" name="Insert21"/>
+                    <input type="hidden" value="Table::book~Field::notes~Order::22~Type::String" name="Insert22"/>
                     <input name="Datasource" type="hidden" value="db_hutchison.props"/>
                     <input name="form" type="hidden" value="Insert Book"/>
                     <table>
